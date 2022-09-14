@@ -10,32 +10,41 @@ import Time from "../../components/Time";
 const Cart = () => {
     const { query: { id } } = useRouter();
     const [clock, setClock] = useState([])
+    const [index, setIndex] = useState(0);
+    const [index1, setIndex1] = useState(0);
+
     useEffect(() => {
         let time = []
-        for (let i = 0; i <= 1400; i += 30) {
-            time.push(i);
+        for (let i = 0; i <= 24; i += 1) {
+            time.push(i)
             setClock(time)
         }
-        console.log(clock)
     }, [])
-
-    const [index, setIndex] = useState(0);
     const handleClick = (direction) => {
+        const width = window.innerWidth;
         if (direction === "left") {
             setIndex(index > 0 ? index - 100 : 0);
         } else {
-            setIndex(index <= (clock.length * 100) ? index + 250 : 0);
+            setIndex(index <= ((clock.length * 100) - width) ? index + 100 : 0);
+        }
+    };
+    const handleClicked = (direction) => {
+        const width = window.innerWidth;
+        if (direction === "left") {
+            setIndex1(index1 > 0 ? index1 - 100 : 0);
+        } else {
+            setIndex1(index1 <= ((clock.length * 100) - width) ? index1 + 100 : 0);
         }
     };
 
     return <div className="w-screen overflow-x-hidden">
         <NavBar />
 
-        <div className="container   md:flex ">
+        <div className="container   md:flex w-screen px-2 overflow-x-hidden">
             <div className=" hidden md:flex">
                 <SideNav />
             </div>
-            <div className="w-full  flex flex-col px-4 gap-8">
+            <div className="w-full  flex flex-col px-4 gap-8 overflow-x-hidden pb-16  mb-[60vh]   md:shadow-x">
                 <div className="w-full flex justify-center ">
                     <Image src="/plumber.png" alt="" width="100%" height="100%" />
                 </div>
@@ -66,7 +75,7 @@ const Cart = () => {
                 </div>
                 <div className="flex flex-col gap-4">
                     <h1 className="text-2xl font-bold">Choose Job Deadline</h1>
-                    <input type="date" className="shadow-4xl p-3" />
+                    <input type="date" className="shadow-4xl p-3 outline-none" />
                 </div>
                 <div className="flex flex-col gap-4">
                     <h1 className="text-2xl font-bold">From</h1>
@@ -79,18 +88,54 @@ const Cart = () => {
                         </div>
 
                     </div>
-                    <motion.div animate={{
-                        x: -index
-                    }}
+                    <div className="w-full overflow-x-hidden p-3">
+                        <motion.div animate={{
+                            x: -index
+                        }}
 
-                        className="gap-4 h-[80px] flex " >
-                        {clock.map((time) => {
-                            return <Time hour={time} key={time} />
-                        })}
-                    </motion.div>
+                            className="gap-4 h-[50px]  flex " >
+                            {clock.map((time) => {
+                                return <Time hour={time} key={time} />
+                            })}
+                        </motion.div>
+                    </div>
+
+                </div>
+
+                <div className="flex flex-col gap-4">
+                    <h1 className="text-2xl font-bold">To</h1>
+                    <div className="contols flex justify-between">
+                        <div onClick={() => handleClicked("left")} className="left w-[30px] h-[30px] shadow-md rounded-full flex justify-center items-center">
+                            <Left />
+                        </div>
+                        <div onClick={() => handleClicked("right")} className="left w-[30px] h-[30px] shadow-md rounded-full flex justify-center items-center">
+                            <Right />
+                        </div>
+
+                    </div>
+                    <div className=" w-full overflow-x-hidden p-3">
+                        <motion.div animate={{
+                            x: -index1
+                        }}
+
+                            className="gap-4 h-[50px]  flex " >
+                            {clock.map((time) => {
+                                return <Time hour={time} key={time} />
+                            })}
+                        </motion.div>
+                    </div>
                 </div>
 
 
+                <div className="flex flex-col gap-4">
+                    <h1 className="text-2xl font-bold">Job Description</h1>
+                    <textarea className="shadow-lg p-1 h-20 outline-none resize-none" placeholder="Type the job description" />
+                </div>
+                <div className="flex flex-col gap-4">
+                    <h1 className="text-2xl font-bold">Qualifications</h1>
+                    <textarea className="shadow-lg p-1 h-20 outline-none resize-none" placeholder="Enter minimal qualifucations for this job" />
+                </div>
+                <button className="shadow-4xl mt-4 p-4">POST JOB</button>
 
             </div>
 

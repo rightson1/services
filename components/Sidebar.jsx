@@ -32,11 +32,12 @@ const Sidebar = () => {
         <div className="w-full shadow-md py-2 px-2 text-light bg-red-50 text-xl text-center">
             <h1>Home</h1>
         </div>
-        <div className="w-full shadow-md py-2 px-2 text-light bg-red-50 text-xl text-center">
-            <h1>Cartegories</h1>
-        </div>
+
         <div className="w-full shadow-md py-2 px-2 text-light bg-red-50 text-xl text-center">
             <h1>Inbox</h1>
+        </div>
+        <div className="w-full shadow-md py-2 px-2 text-light bg-red-50 text-xl text-center">
+            <h1>Disputes</h1>
         </div>
         <div className="w-full shadow-md py-2 px-2 text-light bg-red-50 text-xl text-center">
             <h1>Switch To Worker</h1>

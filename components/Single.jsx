@@ -14,7 +14,7 @@ const Single = () => {
         </div>
         <div className="flex flex-col flex-1 items-end">
             <h1>4.1</h1>
-            <h1 className="text-[orange]"><AiFillStar /></h1>
+            <h1 className="text-[#3a3835]"><AiFillStar /></h1>
         </div>
     </div>;
 };

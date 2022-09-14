@@ -5,7 +5,7 @@ const Profile = () => {
     return <div className="w-[100vw] flex items-center justify-center px-6">
         <div className="hidden  h-[130px] shadow-md overflow-hidden relative md:flex items-center justify-center">
             <div className="text-xl font-normal absolute w-[100%] h-[100%] z-[2] bg-[rgba(0,0,0,.3)] flex items-center justify-center">
-                Best Cleaning Services in Kenya
+                Best Services in Kenya
             </div>
             <Image src="/cleaner.png" alt="" width="1000%" objectFit="cover" height="400%" />
 
