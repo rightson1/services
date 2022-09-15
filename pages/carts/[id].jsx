@@ -44,7 +44,7 @@ const Cart = () => {
             <div className=" hidden md:flex">
                 <SideNav />
             </div>
-            <div className="w-full  flex flex-col px-4 gap-8 overflow-x-hidden pb-16  mb-[60vh]   md:shadow-x">
+            <div className="w-full  flex flex-col px-4 gap-8 overflow-x-hidden pb-16  mb-[60vh]   md:shadow-x1 overflow-y-">
                 <div className="w-full flex justify-center ">
                     <Image src="/plumber.png" alt="" width="100%" height="100%" />
                 </div>

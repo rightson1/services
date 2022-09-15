@@ -6,7 +6,7 @@ import Avatar from "../components/Avatar";
 const Register = () => {
     const [open, setOpen] = useState(false);
     const [url, setUrl] = useState()
-    console.log(url)
+
     return <div className="w-screen bg-white h-screen flex justify-center items-center  ">
 
         <div className="container max-w-[500px] flex flex-col items-center gap-8">

@@ -3,11 +3,11 @@ import { motion } from "framer-motion"
 import Card from "./Card";
 const User = () => {
     const carts = [
-        { img: "/baby.png", title: "baby" },
+        { img: "/baby.png", title: "baby sitting" },
         { img: "/cleaning.png", title: "cleaning" },
         { img: "/electrician.png", title: "electrician" },
         { img: "/gardening.png", title: "garder" },
-        { img: "/plumber.png", title: "blumber" },
+        { img: "/plumber.png", title: "plumber" },
         { img: "/carpenter.png", title: "Capernter" },
         { img: "/more.png", title: "more" },
     ]

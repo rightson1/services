@@ -12,6 +12,7 @@ module.exports = {
                 "4xl": "10px 0px 10px 0px rgba(0, 0, 0, .5)",
                 "5xl": "8px -5px 4px 0px rgba(0, 0, 0, .3)",
                 x: "8px -5px 4px 0px rgba(0, 0, 0, .3)",
+                x1: "-5px 5px 4px 0px rgba(0, 0, 0, .3)",
             },
         },
     },
