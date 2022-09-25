@@ -27,9 +27,9 @@ const Login = () => {
 
     }
     const handleSubmit = async () => {
-        axios.patch("http://localhost:3000/api/user", values).then((res) => {
+        axios.patch("http://localhost:3000/api/worker", values).then((res) => {
             if (res.data.username) {
-                router.push("/")
+                router.push("/worker")
                 localStorage.setItem('user', JSON.stringify(res.data))
             } else {
 
@@ -52,7 +52,7 @@ const Login = () => {
             <input onChange={(e) => handleChange(e)} name="username" type="text" className="w-[300px] h-16  shadow-md  outline-none px-8" placeholder="username" />
             <input onChange={(e) => handleChange(e)} name="password" type="text" className="w-[300px] h-16  shadow-md  outline-none px-8" placeholder="password" />
             <button className="w-[300px] h-16  shadow-md  outline-none px-8" onClick={() => handleSubmit()}>LOGIN</button>
-            <p>Dont  have an Account?   <button className=" h-16  shadow-md  outline-none px-8" onClick={() => router.push('/register')}>Register</button></p>
+            <p>Dont  have an Account?   <button className=" h-16  shadow-md  outline-none px-8" onClick={() => router.push('/worker/register')}>Register</button></p>
         </div>
         <ToastContainer />
     </div>

@@ -49,8 +49,8 @@ const Avatar = ({ setUrl, setOpen }) => {
         }
     }, [reload]);
 
-    return <div className="w-screen h-screen fixed top-0 left-0 bg-white flex justify-center items-center">
-        <div className=" relative h-full w-full flex flex-col gap-8 bg-red-50  md:w-[500px] sm:gap-8 md:h-[90%] md:rounded-md">
+    return <div className="w-screen min-h-screen overflow-y-auto  fixed top-0 left-0 bg-white flex justify-center items-center">
+        <div className=" relative h-full overflow-scroll min-h-[120vh] w-full flex flex-col gap-8 bg-red-50  md:w-[500px] sm:gap-8 md:h-[90%] md:rounded-md">
             <div className="absolute right-2 top-4 " onClick={() => setOpen(false)}>
                 <Close className="text-2xl" />
             </div>

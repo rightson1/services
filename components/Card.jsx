@@ -16,8 +16,8 @@ const Card = ({ item, index }) => {
                 delay: index / 3,
             }
         }}
-        className="w-[150px] h-[150px] border-2xl shadow-lg  flex items-center justify-center flex-col"
-        onClick={() => router.push('/carts/' + item.title)}
+        className="w-[150px] h-[150px] cursor-pointer border-2xl shadow-lg  flex items-center justify-center flex-col"
+        onClick={() => router.push(`/carts/${index}`)}
     >
         <div className="flex-2 h-full w-full  flex  overflow-hidden justify-center">
 
