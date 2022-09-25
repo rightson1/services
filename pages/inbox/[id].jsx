@@ -44,7 +44,7 @@ const Profile = ({ order, client, worker }) => {
 
         })
 
-    }, []);
+    }, [worker._id]);
 
     const handleSubmit = (e) => {
         e.preventDefault()

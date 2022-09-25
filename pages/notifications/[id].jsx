@@ -39,7 +39,7 @@ const Profile = ({ user, datum }) => {
             setNotification(datum)
 
         })
-    }, [user, datum])
+    }, [data, users])
 
 
     const router = useRouter()

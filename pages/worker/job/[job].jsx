@@ -73,12 +73,10 @@ const Job = ({ data }) => {
 
 
         })
-    }, [])
+    }, [data])
     useEffect(() => {
 
-        if (!user) {
-            return
-        }
+
 
         axios.put(`http://localhost:3000/api/order/?userId=${data.userId}`).then(res => {
 
@@ -90,7 +88,7 @@ const Job = ({ data }) => {
 
         })
 
-    }, []);
+    }, [user]);
     useEffect(() => {
 
         if (!user) {
