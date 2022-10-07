@@ -6,6 +6,8 @@ import React, { useState, useEffect } from "react"
 import Image from "next/image";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
+import { getDownloadURL, ref, uploadBytes, deleteObject } from "firebase/storage";
+import { storage } from "../../models/firebase";
 const toastOptions = {
     position: "top-right",
     autoClose: 5000,
@@ -19,6 +21,7 @@ const toastOptions = {
 const Profile = ({ user }) => {
     const [values, setValues] = useState()
     const [file, setFile] = useState(null);
+
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
@@ -36,42 +39,50 @@ const Profile = ({ user }) => {
                 }
             }).catch(e => {
                 toast.error("There was an error", toastOptions)
+
             })
 
         }
-        const data = new FormData();
-        data.append("file", file);
+        let name = `${file.name}-${Math.floor(Math.random() * 1000)}`
+        const fileRef = ref(storage, `users/${name}`)
+        uploadBytes(fileRef, file).then((res) => {
 
-        data.append("upload_preset", "uploads");
+            deleteObject(ref(storage, `/users/${user.pic}`)).then(() => {
 
-        try {
-            const uploads = await axios.post('https://api.cloudinary.com/v1_1/dzbfwfmfn/image/upload', data);
-            const { url } = uploads.data;
 
-            const data = { ...values, avatar: url }
+            })
+                .catch((err) => {
+                    console.log(err);
+                });
+            getDownloadURL(res.ref).then((url) => {
 
-            await axios.put(`http://localhost:3000/api/user/${user._id}`, data).then((res) => {
-                if (res.data.username) {
-                    toast.success("Updated Succesfull", toastOptions)
+                const data = { ...values, avatar: url, pic: name }
+                axios.put(`http://localhost:3000/api/user/${user._id}`, data).then((res) => {
+                    if (res.data.username) {
+                        toast.success("Updated Succesfull", toastOptions)
 
-                } else {
+                    } else {
 
+                        toast.error("There was an error", toastOptions)
+                    }
+                }).catch(e => {
                     toast.error("There was an error", toastOptions)
-                }
-            }).catch(e => {
-                toast.error("There was an error", toastOptions)
+                })
             })
 
-        } catch (err) {
-
+        }).catch(e => {
             toast.error("There was an error", toastOptions)
-        }
+            console.log(e)
+        })
+
+
 
 
 
 
 
     }
+    // toast.error("There was an error", toastOptions)
     return <div className="flex mb-[50vh]">
         <div className="hidden md:flex flex-1">
             {user && <Sidebar user={user} />}

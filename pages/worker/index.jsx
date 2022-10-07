@@ -67,7 +67,7 @@ const Index = ({ data }) => {
     if (!user) {
         <div className="flex">
             <div className="text-red-900">An error occured </div>
-            <button>Navigate To Login</button>
+            <button onClick={() => router.push('/worker/login')}>Navigate To Login</button>
         </div>
     }
     else {

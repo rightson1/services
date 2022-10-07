@@ -9,6 +9,8 @@ import { carts } from "../../../components/carts";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import Router, { useRouter } from "next/router";
+import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../../models/firebase";
 
 const Profile = ({ user }) => {
     const [values, setValues] = useState()
@@ -35,9 +37,9 @@ const Profile = ({ user }) => {
             return await axios.put(`http://localhost:3000/api/worker/${user._id}`, values).then((res) => {
                 if (res.data.username) {
                     toast.success("Updated Succesfull", toastOptions)
-                    setTimeout(() => {
-                        router.push(`/worker/profile/${user._id}`)
-                    }, 2000)
+                    // setTimeout(() => {
+                    //     router.push(`/worker/profile/${user._id}`)
+                    // }, 2000)
 
                 } else {
 
@@ -48,40 +50,43 @@ const Profile = ({ user }) => {
             })
 
         }
-        const data = new FormData();
-        data.append("file", file);
+        let name = `${file.name}-${Math.floor(Math.random() * 1000)}`;
+        const fileRef = ref(storage, `/workers/${name}`);
+        uploadBytes(fileRef, file).then((res) => {
+            deleteObject(ref(storage, `workers/${user.pic}`)).then((res) => {
+                console.log('item deleted')
+            }).then((res) => {
+                console.log('deleted')
+            }).catch((err) => {
+                console.log(err);
+            });
+            getDownloadURL(res.ref).then((url) => {
+                const data = { ...values, avatar: url, pic: name }
+                axios.put(`http://localhost:3000/api/worker/${user._id}`, data).then((res) => {
+                    if (res.data.username) {
+                        toast.success("Updated Succesfull", toastOptions)
+                        setTimeout(() => {
+                            router.push(`/worker/profile/${user._id}`)
+                        }, 2000)
 
-        data.append("upload_preset", "uploads");
+                    } else {
 
-        try {
-            const uploads = await axios.post('https://api.cloudinary.com/v1_1/dzbfwfmfn/image/upload', data);
-            const { url } = uploads.data;
-
-            const data = { ...values, avatar: url }
-
-            await axios.put(`http://localhost:3000/api/worker/${user._id}`, data).then((res) => {
-                if (res.data.username) {
-                    toast.success("Updated Succesfull", toastOptions)
-
-                } else {
-
+                        toast.error("There was an error", toastOptions)
+                    }
+                }).catch(e => {
                     toast.error("There was an error", toastOptions)
-                }
-            }).catch(e => {
-                toast.error("There was an error", toastOptions)
+                })
+
             })
 
-        } catch (err) {
-
-            toast.error("There was an error", toastOptions)
-        }
-
-
+        }).catch((err) => {
+            console.log(err);
+        });
 
 
 
     }
-
+    console.log(user)
     return <div className="flex">
         <div className="hidden md:flex flex-1">
             {user && <Sidebar worker={true} user={user} />}
@@ -91,7 +96,7 @@ const Profile = ({ user }) => {
             <div className="flex flex-col px-4 gap-4">
                 <div className="flex  shadow-lg  gap-4 px-4">
                     <div className="relative ">
-                        <Image src="/cleaner.png" alt="" width="100%" objectFit="cover" height="100%" />
+                        <Image src={file ? URL.createObjectURL(file) : user && user.avatar} alt="" width="100%" objectFit="cover" height="100%" />
                         <label htmlFor="file" className="absolute p-2 shadow-lg bg-[rgba(0,0,0,.3)] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-2xl"><BiEditAlt /></label>
 
                     </div>    <input type="file" id="file" className="hidden" onChange={(e) => setFile(e.target.files[0])} />

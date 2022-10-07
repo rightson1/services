@@ -163,7 +163,7 @@ const Job = ({ data }) => {
         setLike(client.likes.includes(user._id) ? true : false)
 
     }, [client])
-
+    console.log(data)
     return <div className="flex mb-16">
         <div className="hidden md:flex flex-1">
             <Sidebar worker={true} user={user} />
@@ -209,6 +209,9 @@ const Job = ({ data }) => {
                     <p className="font-light text-xl bg-[rgba(0,0,0,.3)] w-[fit-content] rounded-lg px-2">{data.type}</p>
 
                 </div>
+                {data.image && <div className="flex flex-col gap-2 mx-4 p-2 border-b-[2px] h-[300px]">
+                    <Image src={data.image} alt="job image" width="100%" height="300px" />
+                </div>}
                 <div className="flex flex-col gap-2 mx-4 p-2 border-b-[2px]">
                     <button onClick={(e) => setApply(!apply)} className="border mb-4 py-3 text-xl transition-all duration-300 hover:bg-black hover:text-white ">Apply for the job</button>
                     <motion.form
@@ -226,6 +229,9 @@ const Job = ({ data }) => {
                         <button className="border p-1 transition duration-[.4s] hover:bg-black hover:text-white" type="submit" >Submit</button>
                     </motion.form>
                 </div>
+
+
+
 
                 <div className="flex flex-col gap-2 mx-4 p-2 border-b-[2px]">
                     <div className="flex gap-4">

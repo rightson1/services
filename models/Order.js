@@ -22,21 +22,9 @@ const OrderSchema = new Schema({
         type: Array,
         default: [],
     },
-    applicants: {
-        type: [{
-            id: {
-                type: String,
-                required: true,
-            },
-            wage: {
-                type: String,
-                required: true,
-            },
-            text: {
-                type: String,
-                required: true,
-            },
-        }, ],
+    image: {
+        type: String,
+        default: "",
     },
     dislikes: {
         type: Array,

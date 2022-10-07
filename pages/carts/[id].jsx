@@ -14,6 +14,8 @@ import { areas } from "../../components/carts";
 import { toast, ToastContainer } from "react-toastify";
 import { wards } from "../../components/carts";
 import "react-toastify/dist/ReactToastify.css";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "../../models/firebase";
 
 
 const toastOptions = {
@@ -41,8 +43,9 @@ const Cart = () => {
     const [ward, setWard] = useState();
     const [to, setTo] = useState()
     const [place, setPlace] = useState([]);
+    const [file, setFile] = useState(null)
 
-    const ref = useRef();
+
     const [values, setValues] = useState({
         title: null,
         desc: null,
@@ -110,14 +113,35 @@ const Cart = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const data = { type: cart, ...values, from, to, deadline, area, userId: user._id, ward };
-        axios.post('http://localhost:3000/api/order', data).then((res) => {
+        let data = { type: cart, ...values, from, to, deadline, area, userId: user._id, ward };
+        if (file) {
+            let name = `${file.name}-${Math.floor(Math.random() * 1000)}`;
+            const fileRef = ref(storage, `jobs/${name}`);
+            return uploadBytes(fileRef, file).then((res) => {
+                getDownloadURL(res.ref).then((url) => {
+                    data.image = url;
+                    axios.post('http://localhost:3000/api/order', data).then((res) => {
 
-            toast.success('Job Posted successfully, we will notify you if someone applies')
-            e.target.reset();
-        }).catch((e) => {
-            toast.error('There was an error');
-        })
+                        toast.success('Job and Image Posted, we will notify you if someone applies')
+                        e.target.reset();
+                    }).catch((e) => {
+                        toast.error('There was an error');
+                    })
+
+                })
+            })
+
+        }
+        else {
+            return axios.post('http://localhost:3000/api/order', data).then((res) => {
+
+                toast.success('Job Posted successfully, we will notify you if someone applies')
+                e.target.reset();
+            }).catch((e) => {
+                toast.error('There was an error');
+            })
+        }
+
 
     }
 
@@ -166,7 +190,7 @@ const Cart = () => {
 
 
 
-                    <select ref={ref} required name="Constituencies" id="cars" className=" shadow-lg p-4 outline-none" onChange={(e) => setWard(e.target.value)} >
+                    <select required name="Constituencies" id="cars" className=" shadow-lg p-4 outline-none" onChange={(e) => setWard(e.target.value)} >
                         <option value="select" disabled="true" selected>Select Your Ward</option>
                         {place && place.map((area, index) => {
                             return <option value={area} selected={area === ward ? true : false} key={index}>{area}</option>
@@ -245,7 +269,7 @@ const Cart = () => {
                     <div className="w-full  shadow-md  outline-none px-8 py-3 flex flex-col items-center gap-4" >
                         <label htmlFor="file" className="opacity-[.6]">Upload Profile Pic(optional)</label>
                         <label htmlFor="file" className="text-3xl"><BsFillImageFill /></label>
-                        <input type="file" className="hidden" name="file" id="file" />
+                        <input type="file" className="hidden" name="file" id="file" onChange={(e) => setFile(e.target.files[0])} />
 
                     </div>
                 </div>

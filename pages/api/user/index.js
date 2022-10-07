@@ -2,7 +2,7 @@ import db from "../../../models/db";
 import User from "../../../models/User";
 import cookie from "cookie";
 const hundler = async function(req, res) {
-    db();
+    await db();
     const { method, query } = req;
     if (method === "POST") {
         const email = await User.findOne({ email: req.body.email });

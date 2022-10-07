@@ -14,8 +14,12 @@ const WorkerSchema = new Schema({
         type: String,
         default: "",
     },
-
+    pic: {
+        type: String,
+        default: "",
+    },
     type: str,
+
     area: str,
     worker: {
         type: Boolean,
