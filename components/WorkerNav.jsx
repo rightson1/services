@@ -16,7 +16,7 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
 
     if (search) {
         return (
-            <div className="h-[70px] w-[100%] flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
+            <div className="h-[70px] w-screen flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
                 <div className="w-[40px] cursor-pointer h-[40px]  flex items-center justify-center rounded-full text-xl border-black" onClick={() => router.push('/worker')}>
                     <AiOutlineClose />
 
@@ -44,7 +44,7 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
     }
     if (profile) {
         return (
-            <div className="h-[70px] w-[100%] flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
+            <div className="h-[70px] w-screen flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
                 <div className=" cursor-pointer w-[40px] h-[40px]  flex items-center justify-center rounded-full text-xl border-black" onClick={() => { non ? router.push('/') : Router.back() }}>
                     <AiOutlineArrowLeft />
 
@@ -72,7 +72,7 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
         )
     } if (jobs) {
         return (
-            <div className="h-[70px] w-[100%] flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
+            <div className="h-[70px] w-screen flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
                 <div className="w-[40px] h-[40px]  flex items-center justify-center rounded-full text-xl border-black cursor-pointer" onClick={() => router.push('/worker')}>
                     <AiOutlineArrowLeft />
 
@@ -100,7 +100,7 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
         )
     }
     else {
-        return <div className="h-[100px] min-h- w-[100%] flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
+        return <div className="h-[100px] min-h- w-screen flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
             <div className="w-[40px] cursor-pointer h-[40px] border flex items-center justify-center rounded-full text-xl border-black" onClick={() => setOpen(!open)}>
                 <AiOutlineUser />
 
