@@ -33,7 +33,7 @@ const User = () => {
         }} className="w-full m-2 p-3 text-left mb-8">
             <h1 className="text-3xl font-semibold ">Which Services do you need?</h1>
         </motion.div>
-        <motion.div className="container flex flex-wrap gap-4 align-center justify-center"
+        <motion.div className="flex flex-wrap gap-4 align-center justify-center"
             variants={variants} initial="inital" animate="animate"
         >
 

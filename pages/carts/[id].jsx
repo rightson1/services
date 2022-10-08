@@ -45,6 +45,7 @@ const Cart = () => {
     const [to, setTo] = useState()
     const [place, setPlace] = useState([]);
     const [file, setFile] = useState(null)
+    const [loading, setLoading] = useState(false);
 
 
     const [values, setValues] = useState({
@@ -114,6 +115,7 @@ const Cart = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
         let data = { type: cart, ...values, from, to, deadline, area, userId: user._id, ward };
         if (file) {
             let name = `${file.name}-${Math.floor(Math.random() * 1000)}`;
@@ -122,11 +124,13 @@ const Cart = () => {
                 getDownloadURL(res.ref).then((url) => {
                     data.image = url;
                     axios.post(`${baseUrl}/api/order`, data).then((res) => {
+                        setLoading(false)
 
                         toast.success('Job and Image Posted, we will notify you if someone applies')
                         e.target.reset();
                     }).catch((e) => {
                         toast.error('There was an error');
+                        setLoading(false)
                     })
 
                 })
@@ -135,11 +139,12 @@ const Cart = () => {
         }
         else {
             return axios.post(`${baseUrl}/api/order`, data).then((res) => {
-
+                setLoading(false)
                 toast.success('Job Posted successfully, we will notify you if someone applies')
                 e.target.reset();
             }).catch((e) => {
                 toast.error('There was an error');
+                setLoading(false)
             })
         }
 
@@ -150,7 +155,7 @@ const Cart = () => {
     return <form className="w-screen overflow-x-hidden" onSubmit={(e) => handleSubmit(e)}>
         {user && <NavBar user={user} />}
 
-        <div className="container   md:flex w-screen px-2 overflow-x-hidden">
+        <div className="md:flex w-screen px-2 overflow-x-hidden">
             <div className=" hidden md:flex">
                 <Sidebar user={user} />
             </div>
@@ -207,10 +212,10 @@ const Cart = () => {
                 <div className="flex flex-col gap-4">
                     <h1 className="text-2xl font-bold">From</h1>
                     <div className="contols flex justify-between">
-                        <div onClick={() => handleClick("left")} className="left cursor-pointer w-[30px] h-[30px] shadow-md rounded-full flex justify-center items-center">
+                        <div onClick={() => handleClick("left")} className="left xm:cursor-pointer w-[30px] h-[30px] shadow-md rounded-full flex justify-center items-center">
                             <Left />
                         </div>
-                        <div onClick={() => handleClick("right")} className="left cursor-pointer w-[30px] h-[30px] shadow-md rounded-full flex justify-center items-center">
+                        <div onClick={() => handleClick("right")} className="left xm:cursor-pointer w-[30px] h-[30px] shadow-md rounded-full flex justify-center items-center">
                             <Right />
                         </div>
 
@@ -232,10 +237,10 @@ const Cart = () => {
                 <div className="flex flex-col gap-4">
                     <h1 className="text-2xl font-bold">To</h1>
                     <div className="contols flex justify-between">
-                        <div onClick={() => handleClicked("left")} className="left cursor-pointer w-[30px] h-[30px] shadow-md rounded-full flex justify-center items-center">
+                        <div onClick={() => handleClicked("left")} className="left xm:cursor-pointer w-[30px] h-[30px] shadow-md rounded-full flex justify-center items-center">
                             <Left />
                         </div>
-                        <div onClick={() => handleClicked("right")} className="left w-[30px] h-[30px] shadow-md rounded-full flex cursor-pointer justify-center items-center">
+                        <div onClick={() => handleClicked("right")} className="left w-[30px] h-[30px] shadow-md rounded-full flex xm:cursor-pointer justify-center items-center">
                             <Right />
                         </div>
 
@@ -274,7 +279,7 @@ const Cart = () => {
 
                     </div>
                 </div>
-                <button className="shadow-4xl mt-4 p-4" type="submit">POST JOB</button>
+                <button className="shadow-4xl mt-4 p-4" type="submit">{loading ? 'Loading...' : 'POST JOB'}</button>
 
             </div>
 

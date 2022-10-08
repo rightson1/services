@@ -15,6 +15,7 @@ import { storage } from "../../../models/firebase";
 const Profile = ({ user }) => {
     const [values, setValues] = useState()
     const [file, setFile] = useState(null);
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
@@ -32,9 +33,12 @@ const Profile = ({ user }) => {
         pauseOnHover: false,
     };
     const handleSubmit = async () => {
+        setLoading(true)
 
         if (!file) {
+
             return await axios.put(`${baseUrl}/api/worker/${user._id}`, values).then((res) => {
+                setLoading(false)
                 if (res.data.username) {
                     toast.success("Updated Succesfull", toastOptions)
                     // setTimeout(() => {
@@ -43,9 +47,11 @@ const Profile = ({ user }) => {
 
                 } else {
 
+                    setLoading(false)
                     toast.error("There was an error", toastOptions)
                 }
             }).catch(e => {
+                setLoading(false)
                 toast.error("There was an error", toastOptions)
             })
 
@@ -53,16 +59,20 @@ const Profile = ({ user }) => {
         let name = `${file.name}-${Math.floor(Math.random() * 1000)}`;
         const fileRef = ref(storage, `/workers/${name}`);
         uploadBytes(fileRef, file).then((res) => {
+            setLoading(false)
             deleteObject(ref(storage, `workers/${user.pic}`)).then((res) => {
                 console.log('item deleted')
             }).then((res) => {
                 console.log('deleted')
             }).catch((err) => {
+                setLoading(false)
                 console.log(err);
             });
             getDownloadURL(res.ref).then((url) => {
+                setLoading(false)
                 const data = { ...values, avatar: url, pic: name }
                 axios.put(`${baseUrl}/api/worker/${user._id}`, data).then((res) => {
+                    setLoading(false)
                     if (res.data.username) {
                         toast.success("Updated Succesfull", toastOptions)
                         setTimeout(() => {
@@ -74,19 +84,21 @@ const Profile = ({ user }) => {
                         toast.error("There was an error", toastOptions)
                     }
                 }).catch(e => {
+                    setLoading(false)
                     toast.error("There was an error", toastOptions)
                 })
 
             })
 
         }).catch((err) => {
+            setLoading(false)
             console.log(err);
         });
 
 
 
     }
-    console.log(user)
+
     return <div className="flex">
         <div className="hidden md:flex flex-1">
             {user && <Sidebar worker={true} user={user} />}
@@ -151,7 +163,7 @@ const Profile = ({ user }) => {
                     outline-none resize-none
                     " />
                 </div>
-                <button className="shadow-4xl mt-4 p-4 " type="submit" onClick={(e) => handleSubmit(e)}>Change Profile</button>
+                <button className="shadow-4xl mt-4 p-4 " type="submit" onClick={(e) => handleSubmit(e)}>{loading ? 'Loading...' : 'Change Profile'}</button>
 
 
             </div>

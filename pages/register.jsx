@@ -20,6 +20,7 @@ const toastOptions = {
 const Register = () => {
     const [open, setOpen] = useState(false);
     const [url, setUrl] = useState(null);
+    const [loading, setLoading] = useState(false)
     const [values, setValues] = useState({
         email: null,
         username: null,
@@ -38,7 +39,9 @@ const Register = () => {
     }, [url])
 
     const handleSubmit = async () => {
+        setLoading(true)
         const data = await axios.post(`${baseUrl}/api/user`, values).then((res) => {
+            setLoading(false)
             if (res.data.username) {
                 router.push("/login")
             } else {
@@ -46,6 +49,7 @@ const Register = () => {
                 toast.error(res.data, toastOptions)
             }
         }).catch(e => {
+            setLoading(false)
             console.log(e)
         })
 
@@ -73,7 +77,7 @@ const Register = () => {
             </div>
             <button className="w-[300px] h-16  shadow-md  outline-none px-8" onClick={() => setOpen(true)}>Choose Avatar</button>
             {open && <Avatar setUrl={setUrl} setOpen={setOpen} />}
-            <button className="w-[300px] h-16  shadow-md  outline-none px-8" onClick={() => handleSubmit()}>Register</button>
+            <button className="w-[300px] h-16  shadow-md  outline-none px-8" onClick={() => handleSubmit()}>{loading ? 'Loading...' : 'Register'}</button>
             <p>Already have an Account?   <button className=" h-16  shadow-md  outline-none px-8" onClick={() => router.push('/login')}>Login</button></p>
 
         </div>

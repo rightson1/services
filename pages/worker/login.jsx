@@ -21,6 +21,7 @@ const Login = () => {
         password: null,
 
     });
+    const [loading, setLoading] = useState(false);
 
     const router = useRouter();
     const handleChange = (e) => {
@@ -28,7 +29,9 @@ const Login = () => {
 
     }
     const handleSubmit = async () => {
+        setLoading(true)
         axios.patch(`${url}/api/worker`, values).then((res) => {
+            setLoading(false)
             if (res.data.username) {
                 router.push("/worker")
                 localStorage.setItem('user', JSON.stringify(res.data))
@@ -38,6 +41,7 @@ const Login = () => {
                 toast.error(res.data, toastOptions)
             }
         }).catch(e => {
+            setLoading(false)
             console.log(e)
         })
 
@@ -52,7 +56,7 @@ const Login = () => {
             <Image src="/rightson.png" alt="logo" width="100px" height="100px" />
             <input onChange={(e) => handleChange(e)} name="username" type="text" className="w-[300px] h-16  shadow-md  outline-none px-8" placeholder="username" />
             <input onChange={(e) => handleChange(e)} name="password" type="text" className="w-[300px] h-16  shadow-md  outline-none px-8" placeholder="password" />
-            <button className="w-[300px] h-16  shadow-md  outline-none px-8" onClick={() => handleSubmit()}>LOGIN</button>
+            <button className="w-[300px] h-16  shadow-md  outline-none px-8" onClick={() => handleSubmit()}>{loading ? 'Loading...' : 'Login'}</button>
             <p>Dont  have an Account?   <button className=" h-16  shadow-md  outline-none px-8" onClick={() => router.push('/worker/register')}>Register</button></p>
         </div>
         <ToastContainer />

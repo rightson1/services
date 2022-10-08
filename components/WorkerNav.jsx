@@ -16,8 +16,8 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
 
     if (search) {
         return (
-            <div className="h-[70px] w-screen flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
-                <div className="w-[40px] cursor-pointer h-[40px]  flex items-center justify-center rounded-full text-xl border-black" onClick={() => router.push('/worker')}>
+            <div className="h-[70px] w-screen md:w-full flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
+                <div className="w-[40px] sm:cursor-pointer h-[40px]  flex items-center justify-center rounded-full text-xl border-black" onClick={() => router.push('/worker')}>
                     <AiOutlineClose />
 
                 </div>
@@ -34,8 +34,8 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
                     }
                 }
                 >Refresh</motion.div>
-                <div className={!open ? `fixed h-screen w-screen bg-white top-[100px] left-0 z-10 transition duration-[.3s] -translate-x-[100vw]` :
-                    "fixed h-screen w-screen bg-white top-[80px] left-0 z-10 translate-x-0 transition duration-[.5s] md:hidden"
+                <div className={!open ? `fixed h-screen w-screen md:w-full bg-white top-[100px] left-0 z-10 transition duration-[.3s] -translate-x-[100vw]` :
+                    "fixed h-screen w-screen md:w-full bg-white top-[80px] left-0 z-10 translate-x-0 transition duration-[.5s] md:hidden"
                 }>
                     <Sidebar />
                 </div>
@@ -44,8 +44,8 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
     }
     if (profile) {
         return (
-            <div className="h-[70px] w-screen flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
-                <div className=" cursor-pointer w-[40px] h-[40px]  flex items-center justify-center rounded-full text-xl border-black" onClick={() => { non ? router.push('/') : Router.back() }}>
+            <div className="h-[70px] w-screen md:w-full flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
+                <div className=" sm:cursor-pointer w-[40px] h-[40px]  flex items-center justify-center rounded-full text-xl border-black" onClick={() => { non ? router.push('/') : Router.back() }}>
                     <AiOutlineArrowLeft />
 
                 </div>
@@ -55,12 +55,12 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
                         inbox ? "inbox"
                             : "Profile"}
                 </div>
-                <motion.div className="close  mr-5 text-2xl cursor-pointer " onClick={() => setRefresh(!refresh)}>
+                <motion.div className="close  mr-5 text-2xl sm:cursor-pointer " onClick={() => setRefresh(!refresh)}>
                     <FiMoreVertical style={{ cursor: "pointer" }} />
                 </motion.div>
                 <motion.div
 
-                    className="fixed   top-20  right-0 w-1/2 cursor-pointer max-w-[200px] h-[50px] shadow-lg flex items-center justify-center" animate={
+                    className="fixed   top-20  right-0 w-1/2 sm:cursor-pointer max-w-[200px] h-[50px] shadow-lg flex items-center justify-center" animate={
                         {
                             x: !refresh ? "100vw" : 0
                         }
@@ -72,8 +72,8 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
         )
     } if (jobs) {
         return (
-            <div className="h-[70px] w-screen flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
-                <div className="w-[40px] h-[40px]  flex items-center justify-center rounded-full text-xl border-black cursor-pointer" onClick={() => router.push('/worker')}>
+            <div className="h-[70px] w-screen md:w-full flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
+                <div className="w-[40px] h-[40px]  flex items-center justify-center rounded-full text-xl border-black sm:cursor-pointer" onClick={() => router.push('/worker')}>
                     <AiOutlineArrowLeft />
 
                 </div>
@@ -81,18 +81,18 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
                 <div className="notification mr-4 text-2xl">
                     Jobs
                 </div>
-                <motion.div className="close  mr-5 text-2xl cursor-pointer" onClick={() => setRefresh(!refresh)}>
+                <motion.div className="close  mr-5 text-2xl sm:cursor-pointer" onClick={() => setRefresh(!refresh)}>
                     <FiMoreVertical />
                 </motion.div>
-                <motion.div className="fixed bg-white cursor-pointer top-20  right-0 w-1/2 max-w-[200px] h-[50px] shadow-lg flex items-center justify-center" animate={
+                <motion.div className="fixed bg-white sm:cursor-pointer top-20  right-0 w-1/2 max-w-[200px] h-[50px] shadow-lg flex items-center justify-center" animate={
                     {
                         x: !refresh ? "100vw" : 0
                     }
                 }
                     onClick={(e) => window.location.reload()}
                 >Refresh</motion.div>
-                <div className={!open ? `fixed h-screen w-screen bg-white top-[100px] left-0 z-10 transition duration-[.3s] -translate-x-[100vw]` :
-                    "fixed h-screen w-screen bg-white top-[80px] left-0 z-10 translate-x-0 transition duration-[.5s] md:hidden"
+                <div className={!open ? `fixed h-screen w-screen md:w-full bg-white top-[100px] left-0 z-10 transition duration-[.3s] -translate-x-[100vw]` :
+                    "fixed h-screen w-screen md:w-full bg-white top-[80px] left-0 z-10 translate-x-0 transition duration-[.5s] md:hidden"
                 }>
                     <Sidebar />
                 </div>
@@ -100,8 +100,8 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
         )
     }
     else {
-        return <div className="h-[100px] min-h- w-screen flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
-            <div className="w-[40px] cursor-pointer h-[40px] border flex items-center justify-center rounded-full text-xl border-black" onClick={() => setOpen(!open)}>
+        return <div className="h-[100px] min-h- w-screen md:w-full flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
+            <div className="w-[40px] sm:cursor-pointer h-[40px] border flex items-center justify-center rounded-full text-xl border-black" onClick={() => setOpen(!open)}>
                 <AiOutlineUser />
 
             </div>
@@ -109,10 +109,10 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
             <div className="notification mr-4 text-3xl">
                 <Not />
             </div>
-            <motion.div className="close  c mr-5 text-2xl cursor-pointer" onClick={() => setRefresh(!refresh)}>
+            <motion.div className="close  c mr-5 text-2xl sm:cursor-pointer" onClick={() => setRefresh(!refresh)}>
                 <FiMoreVertical />
             </motion.div>
-            <motion.div className="fixed bg-white top-20  right-0 w-1/2 max-w-[200px] h-[50px] shadow-lg flex cursor-pointer items-center justify-center" animate={
+            <motion.div className="fixed bg-white top-20  right-0 w-1/2 max-w-[200px] h-[50px] shadow-lg flex sm:cursor-pointer items-center justify-center" animate={
                 {
                     x: !refresh ? "100vw" : 0
                 }
@@ -122,7 +122,7 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
                 animate={{
                     x: !open ? -400 : 0
                 }}
-                className={"fixed h-screen w-screen  top-[110px] left-0 z-10 ] md:hidden"
+                className={"fixed h-screen w-screen md:w-full  top-[110px] left-0 z-10 ] md:hidden"
                 }>
                 <Sidebar user={user} worker={true} />
             </motion.div>

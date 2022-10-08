@@ -24,6 +24,7 @@ const toastOptions = {
 const Profile = ({ user }) => {
     const [values, setValues] = useState()
     const [file, setFile] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
@@ -31,10 +32,12 @@ const Profile = ({ user }) => {
     console.log(`${baseUrl}/api/user/${user._id}`)
 
     const handleSubmit = async () => {
+        setLoading(true)
 
 
         if (!file) {
             return await axios.put(`${baseUrl}/api/user/${user._id}`, values).then((res) => {
+                setLoading(false)
                 if (res.data.username) {
                     toast.success("Updated Succesfull", toastOptions)
 
@@ -44,6 +47,7 @@ const Profile = ({ user }) => {
                 }
             }).catch(e => {
                 toast.error("There was an error", toastOptions)
+                setLoading(false)
 
             })
 
@@ -51,7 +55,7 @@ const Profile = ({ user }) => {
         let name = `${file.name}-${Math.floor(Math.random() * 1000)}`
         const fileRef = ref(storage, `users/${name}`)
         uploadBytes(fileRef, file).then((res) => {
-
+            setLoading(false)
             deleteObject(ref(storage, `/users/${user.pic}`)).then(() => {
 
 
@@ -72,12 +76,14 @@ const Profile = ({ user }) => {
                     }
                 }).catch(e => {
                     toast.error("There was an error", toastOptions)
+                    setLoading(false)
                 })
             })
 
         }).catch(e => {
             toast.error("There was an error", toastOptions)
             console.log(e)
+            setLoading(false)
         })
 
 
@@ -143,7 +149,7 @@ const Profile = ({ user }) => {
                 </div>
 
 
-                <button className="shadow-4xl mt-4 p-4 " type="submit" onClick={(e) => handleSubmit(e)}>Change Profile</button>
+                <button className="shadow-4xl mt-4 p-4 " type="submit" onClick={(e) => handleSubmit(e)}>{loading ? 'Loading...' : 'Change Profile'}</button>
             </div>
 
 

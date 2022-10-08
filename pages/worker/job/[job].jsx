@@ -35,10 +35,12 @@ const Job = ({ data }) => {
     const [dislike, setDislike] = useState(false);
     const [client, setClient] = useState();
     const [values, setValues] = useState();
+
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
     const handleSubmitApplication = (e) => {
+
         e.preventDefault()
         // const datum = { ...values, worker: user._id, client: data.userId, jobId: data._id, type: 'Job Application' }
         const datum = { ...values, sender: user._id, to: data.userId, jobId: data._id, type: 'Job Application' }
@@ -164,7 +166,7 @@ const Job = ({ data }) => {
         setLike(client.likes.includes(user._id) ? true : false)
 
     }, [client])
-    console.log(data)
+
     return <div className="flex mb-16">
         <div className="hidden md:flex flex-1">
             <Sidebar worker={true} user={user} />

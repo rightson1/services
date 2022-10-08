@@ -55,8 +55,8 @@ export default function Home() {
 
   else {
     return <div className="flex items-center justify-center h-screen">
-      <div className="text-red-900">An error occured </div>
-      <button onClick={() => router.push('/login')} className="border-2 m-4 p-2  cursor-pointer">Navigate To Login</button>
+      <div className="text-red-900">Loading...</div>
+      <button onClick={() => router.push('/login')} className="border-2 m-4 p-2  xm:cursor-pointer">Navigate To Login</button>
     </div>
   }
 }

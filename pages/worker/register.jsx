@@ -11,14 +11,17 @@ import { url } from "../../components/carts";
 const Register = () => {
     const [open, setOpen] = useState(false);
     const [values, setValues] = useState();
+    const [loading, setLoading] = useState(false);
+
     const router = useRouter()
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
     const handleSubmit = (e) => {
+        setLoading(true)
         e.preventDefault();
         axios.post(`${url}/api/worker`, values).then((res) => {
-            console.log(res)
+            setLoading(false)
             if (res.data.username) {
                 router.push("/worker/login");
                 toast.success(`Welcome ${res.data.username}`, toastOptions)
@@ -30,6 +33,7 @@ const Register = () => {
             }
         }).catch(e => {
             console.log(e)
+            setLoading(false)
         })
 
     }

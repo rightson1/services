@@ -8,7 +8,7 @@ import Sidebar from "./Sidebar";
 const NavBar = ({ user }) => {
     const [open, setOpen] = useState(false)
     return <div className="h-[70px] w-screen flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
-        <div className="w-[40px] cursor-pointer h-[40px] border flex items-center justify-center rounded-full text-xl border-black" onClick={() => setOpen(!open)}>
+        <div className="w-[40px] xm:cursor-pointer h-[40px] border flex items-center justify-center rounded-full text-xl border-black" onClick={() => setOpen(!open)}>
             <AiOutlineUser />
 
         </div>
@@ -16,7 +16,7 @@ const NavBar = ({ user }) => {
         <div className="notification mr-4 text-3xl">
             <Not />
         </div>
-        <motion.div className="close cursor-pointer md:hidden mr-5 text-2xl" onClick={() => setOpen(!open)} layout>
+        <motion.div className="close xm:cursor-pointer md:hidden mr-5 text-2xl" onClick={() => setOpen(!open)} layout>
             {open ? <GiCrossedBones /> : <AiOutlineMenu />}
         </motion.div>
         <div className={!open ? `fixed h-screen w-screen top-[100px] left-0 z-10 transition duration-[.3s] -translate-x-[100vw]` :
