@@ -154,4 +154,5 @@ export const areas = [
     "Starehe",
     "Mathare",
 ];
-export const url = "http://localhost:3000";
+// export const url = "http://localhost:3000";
+export const url = "https://services-peach-sigma.vercel.app";
