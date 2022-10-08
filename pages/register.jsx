@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { areas } from "../components/carts";
-import { url } from "../components/carts";
+import { url as baseUrl } from "../components/carts";
 const toastOptions = {
     position: "top-right",
     autoClose: 5000,
@@ -38,7 +38,7 @@ const Register = () => {
     }, [url])
 
     const handleSubmit = async () => {
-        const data = await axios.post(`${url}/api/user`, values).then((res) => {
+        const data = await axios.post(`${baseUrl}/api/user`, values).then((res) => {
             if (res.data.username) {
                 router.push("/login")
             } else {
