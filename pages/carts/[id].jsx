@@ -200,9 +200,9 @@ const Cart = () => {
                     </select>
 
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 items-center justify-center">
                     <h1 className="text-2xl font-bold">Choose Job Deadline</h1>
-                    <input type="date" className="shadow-4xl p-3 outline-none" onChange={(e) => setDeadline(e.target.value)} />
+                    <input type="date" className="shadow-4xl p-3 outline-none min-w-[250px] w-full" onChange={(e) => setDeadline(e.target.value)} />
                 </div>
                 <div className="flex flex-col gap-4">
                     <h1 className="text-2xl font-bold">From</h1>

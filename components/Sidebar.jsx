@@ -48,7 +48,7 @@ const Sidebar = ({ worker, user }) => {
 
                     }}
 
-                    className={"flex flex-col gap-4  pl-4  cursor-pointer"}>
+                    className={"flex flex-col gap-4  pl-4 "}>
 
                     <Link href={`/worker/profile/${user._id}`} >
                         <h1 className="cursor-pointer">View Account Details</h1></Link>
@@ -122,7 +122,7 @@ const Sidebar = ({ worker, user }) => {
 
                     }}
 
-                    className={"flex flex-col gap-4  pl-4  cursor-pointer"}>
+                    className={"flex flex-col gap-4  pl-4  "}>
 
                     <Link href={`/user/${user._id}`} >
                         <h1 className="cursor-pointer">View Account Details</h1></Link>
