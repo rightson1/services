@@ -5,7 +5,7 @@ import Sidebar from "../../../components/Sidebar";
 import Image from "next/image";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { carts } from "../../../components/carts";
+import { carts, url as baseUrl } from "../../../components/carts";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import Router, { useRouter } from "next/router";
@@ -34,7 +34,7 @@ const Profile = ({ user }) => {
     const handleSubmit = async () => {
 
         if (!file) {
-            return await axios.put(`http://localhost:3000/api/worker/${user._id}`, values).then((res) => {
+            return await axios.put(`${baseUrl}/api/worker/${user._id}`, values).then((res) => {
                 if (res.data.username) {
                     toast.success("Updated Succesfull", toastOptions)
                     // setTimeout(() => {
@@ -62,7 +62,7 @@ const Profile = ({ user }) => {
             });
             getDownloadURL(res.ref).then((url) => {
                 const data = { ...values, avatar: url, pic: name }
-                axios.put(`http://localhost:3000/api/worker/${user._id}`, data).then((res) => {
+                axios.put(`${baseUrl}/api/worker/${user._id}`, data).then((res) => {
                     if (res.data.username) {
                         toast.success("Updated Succesfull", toastOptions)
                         setTimeout(() => {
@@ -174,7 +174,7 @@ export const getServerSideProps = async (ctx) => {
         }
     }
     console.log(id)
-    const user = await axios.get(`http://localhost:3000/api/worker/${id}`);
+    const user = await axios.get(`${baseUrl}/api/worker/${id}`);
 
     return {
         props: {

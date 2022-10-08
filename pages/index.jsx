@@ -5,19 +5,33 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Featured from "../components/Featured";
 import NavBar from "../components/NavBar";
+import { url } from "../components/carts";
 import Profile from "../components/Profile";
 import User from "../components/User";
+let rawUrl = ""
 export default function Home() {
   const [user, setUser] = useState();
   const router = useRouter();
+  const [baseUrl, setBaseUrl] = useState()
+
   useEffect(() => {
     const juser = JSON.parse(localStorage.getItem("user"));
 
-    axios.get(`http://localhost:3000/api/user/${juser._id}`).then(res => {
+    axios.get(`${url}/api/user/${juser._id}`).then(res => {
       setUser(res.data)
 
     })
   }, [])
+  useEffect(() => {
+    setBaseUrl(window.location.href)
+
+
+  }, [])
+  useEffect(() => {
+    rawUrl = baseUrl
+
+
+  }, [baseUrl])
 
 
   if (user) {
@@ -36,7 +50,9 @@ export default function Home() {
         <Featured />
       </div>
     );
+
   }
+
   else {
     return <div className="flex items-center justify-center h-screen">
       <div className="text-red-900">An error occured </div>
@@ -44,6 +60,7 @@ export default function Home() {
     </div>
   }
 }
+
 export const getServerSideProps = async (ctx) => {
   const cookie = ctx.req?.cookies || "";
 

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { url } from "../../components/carts";
 const toastOptions = {
     position: "top-right",
     autoClose: 5000,
@@ -27,7 +28,7 @@ const Login = () => {
 
     }
     const handleSubmit = async () => {
-        axios.patch("http://localhost:3000/api/worker", values).then((res) => {
+        axios.patch(`${url}/api/worker`, values).then((res) => {
             if (res.data.username) {
                 router.push("/worker")
                 localStorage.setItem('user', JSON.stringify(res.data))

@@ -4,6 +4,7 @@ import Sidebar from "../../components/Sidebar";
 import axios from "axios";
 import React, { useState, useEffect } from "react"
 import Image from "next/image";
+import { url } from "../../components/carts";
 const User = ({ user }) => {
 
     if (user) {
@@ -75,7 +76,7 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
-    const user = await axios.get(`http://localhost:3000/api/user/${id}`);
+    const user = await axios.get(`${url}/api/user/${id}`);
 
     return {
         props: {

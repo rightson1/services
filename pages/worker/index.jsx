@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import WorkerNav from "../../components/WorkerNav"
 import Sidebar from "../../components/Sidebar"
 import { FcSearch } from "react-icons/fc"
-
 import axios from "axios";
 import { useRouter } from "next/router";
+import { url } from "../../components/carts"
 
 const Index = ({ data }) => {
 
@@ -20,7 +20,7 @@ const Index = ({ data }) => {
         if (!juser) {
             return router.push('/worker/login')
         }
-        axios.get(`http://localhost:3000/api/worker/${juser._id}`).then(res => {
+        axios.get(`${url}/api/worker/${juser._id}`).then(res => {
             setUser(res.data)
             if (!res.data) {
                 router.push('/login')
@@ -33,7 +33,7 @@ const Index = ({ data }) => {
         if (!user) {
             return
         }
-        axios.patch(`http://localhost:3000/api/order/${user.type}`).then(res => {
+        axios.patch(`${url}/api/order/${user.type}`).then(res => {
 
             if (res.data) {
 
@@ -49,7 +49,7 @@ const Index = ({ data }) => {
             return
         }
 
-        axios.put(`http://localhost:3000/api/order/?area=${user.area}`).then(res => {
+        axios.put(`${url}/api/order/?area=${user.area}`).then(res => {
 
 
             if (res.data) {
@@ -140,7 +140,7 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
-    const res = await axios.get(`http://localhost:3000/api/order`);
+    const res = await axios.get(`${url}/api/order`);
 
 
 

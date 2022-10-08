@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import { areas } from "../../components/carts";
+import { url } from "../../components/carts";
 const Register = () => {
     const [open, setOpen] = useState(false);
     const [values, setValues] = useState();
@@ -16,7 +17,7 @@ const Register = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:3000/api/worker", values).then((res) => {
+        axios.post(`${url}/api/worker`, values).then((res) => {
             console.log(res)
             if (res.data.username) {
                 router.push("/worker/login");

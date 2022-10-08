@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { url } from "../components/carts";
 import axios from "axios";
 const toastOptions = {
     position: "top-right",
@@ -27,7 +28,7 @@ const Login = () => {
 
     }
     const handleSubmit = async () => {
-        axios.patch("http://localhost:3000/api/user", values).then((res) => {
+        axios.patch(`${url}/api/user`, values).then((res) => {
             if (res.data.username) {
                 router.push("/")
                 localStorage.setItem('user', JSON.stringify(res.data))

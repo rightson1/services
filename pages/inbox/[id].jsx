@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { format } from "timeago.js"
 import { motion } from "framer-motion";
+import { url } from "../../components/carts";
 import { Router, useRouter } from "next/router";
 
 const toastOptions = {
@@ -34,7 +35,7 @@ const Profile = ({ order, client, worker }) => {
 
 
 
-        axios.get(`http://localhost:3000/api/comment/?worker=${worker._id}`).then(res => {
+        axios.get(`${url}/api/comment/?worker=${worker._id}`).then(res => {
 
 
             if (res.data) {
@@ -51,7 +52,7 @@ const Profile = ({ order, client, worker }) => {
         const post = {
             review, avatar: client.avatar, worker: worker._id, client: client._id, name: client.name, username: client.username
         };
-        axios.post(`http://localhost:3000/api/comment`, post).then(res => {
+        axios.post(`${url}/api/comment`, post).then(res => {
 
 
             if (res.data) {
@@ -69,7 +70,7 @@ const Profile = ({ order, client, worker }) => {
     const handleSubmitApplication = (e) => {
         e.preventDefault()
         const datum = { ...values, to: worker._id, sender: client._id, jobId: order.jobId, type: 'Application Accepted' }
-        axios.patch(`http://localhost:3000/api/order/?userId=${client.userId}`, datum).then(res => {
+        axios.patch(`${url}/api/order/?userId=${client.userId}`, datum).then(res => {
 
             if (res.data) {
                 e.target.reset();
@@ -202,10 +203,10 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
-    let order = await axios.get(`http://localhost:3000/api/notifications/${id}`);
+    let order = await axios.get(`${url}/api/notifications/${id}`);
     order = order.data
-    const worker = await axios.get(`http://localhost:3000/api/worker/${order.sender}`);
-    const client = await axios.get(`http://localhost:3000/api/user/${order.to}`);
+    const worker = await axios.get(`${url}/api/worker/${order.sender}`);
+    const client = await axios.get(`${url}/api/user/${order.to}`);
 
 
     return {

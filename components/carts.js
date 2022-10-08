@@ -8,139 +8,150 @@ export const carts = [
     { img: "/more.png", title: "more" },
 ];
 
-export const wards = [
-    { Westlands: ["Kitisuru", "Parklands", "Karura", "Mountain view", "kangemi"] },
-    {
-        Kibra: ['Makina', 'Woodley', 'Sarang’ombe', 'Lindi', 'Laini saba']
+export const wards = [{
+        Westlands: ["Kitisuru", "Parklands", "Karura", "Mountain view", "kangemi"],
     },
     {
-        Roysambu: ['Githurai',
-            'Kahawa West',
-            'Zimmerman',
-            'Roysambu',
-            'Kahawa',
-        ]
+        Kibra: ["Makina", "Woodley", "Sarang’ombe", "Lindi", "Laini saba"],
     },
     {
-        "Dagoretti South": ['Mutu-ini',
-            'Ngando',
-            'Riruta',
-            'Uthiru/Ruthi',
-            'Waithaka',
-        ]
+        Roysambu: ["Githurai", "Kahawa West", "Zimmerman", "Roysambu", "Kahawa"],
     },
     {
-        "Dagoretti North": ['Kilimani',
+        "Dagoretti South": [
+            "Mutu-ini",
+            "Ngando",
+            "Riruta",
+            "Uthiru/Ruthi",
+            "Waithaka",
+        ],
+    },
+    {
+        "Dagoretti North": [
+            "Kilimani",
 
-            'Kawangware',
+            "Kawangware",
 
-            'Gatina',
+            "Gatina",
 
-            'Kileleshwa',
+            "Kileleshwa",
 
-            'Kabiro'
-        ]
+            "Kabiro",
+        ],
     },
     {
-        Langata: ['Karen',
-            'Nairobi West',
-            'Mugumu-Ini',
-            'South C',
-            'Nyayo Highrise',
-        ]
+        Langata: [
+            "Karen",
+            "Nairobi West",
+            "Mugumu-Ini",
+            "South C",
+            "Nyayo Highrise",
+        ],
     },
     {
-        Kasarani: ['Clay City',
-            'Mwiki',
-            'Kasarani',
-            'Njiru',
-            'Ruai',
-        ]
+        Kasarani: ["Clay City", "Mwiki", "Kasarani", "Njiru", "Ruai"],
     },
     {
-        Ruaraka: ['Baba Dogo',
-            'Utalii',
-            'Mathare North',
-            'Lucky Summer',
-            'Korogocho',
-        ]
+        Ruaraka: [
+            "Baba Dogo",
+            "Utalii",
+            "Mathare North",
+            "Lucky Summer",
+            "Korogocho",
+        ],
     },
     {
-        "Embakasi South": ['Imara Daima',
-            'Kwa Njenga',
-            'Kwa Ruben',
-            'Pipeline',
-            'Kware',
-        ]
+        "Embakasi South": [
+            "Imara Daima",
+            "Kwa Njenga",
+            "Kwa Ruben",
+            "Pipeline",
+            "Kware",
+        ],
     },
     {
-        "Embakasi North": ['Kariobangi North',
-            'Dandora Area I',
-            'Dandora Area II',
-            'Dandora Area III',
-            'Dandora Area IV',
-        ]
+        "Embakasi North": [
+            "Kariobangi North",
+            "Dandora Area I",
+            "Dandora Area II",
+            "Dandora Area III",
+            "Dandora Area IV",
+        ],
     },
     {
-        "Embakasi East": ['Upper Savannah',
-            'Lower Savannah',
-            'Embakasi',
-            'Utawala',
-            'Mihango',
-        ]
+        "Embakasi East": [
+            "Upper Savannah",
+            "Lower Savannah",
+            "Embakasi",
+            "Utawala",
+            "Mihango",
+        ],
     },
     {
-        "Embakasi Central": ['Kayole North',
-            'Kayole Central',
-            'Kayole South',
-            'Komarock',
-            'Matopeni/Spring Valley',
-        ]
+        "Embakasi Central": [
+            "Kayole North",
+            "Kayole Central",
+            "Kayole South",
+            "Komarock",
+            "Matopeni/Spring Valley",
+        ],
     },
     {
-        "Embakasi West": ['Umoja I',
-            'Umoja II',
-            'Mowlem',
-            'Kariobangi South',
-            'Maringo/Hamza',
-        ]
+        "Embakasi West": [
+            "Umoja I",
+            "Umoja II",
+            "Mowlem",
+            "Kariobangi South",
+            "Maringo/Hamza",
+        ],
     },
     {
-        Kamukunji: ['Eastleigh South',
-            'Airbase',
-            'California',
-            'Ngara',
-            'Nairobi Central',
-        ]
+        Kamukunji: [
+            "Eastleigh South",
+            "Airbase",
+            "California",
+            "Ngara",
+            "Nairobi Central",
+        ],
     },
     {
-        Starehe: ['Pangani',
-            'Ziwani/Kariokor',
-            'Landimawe',
-            'Nairobi South',
-            'Hospital',
-        ]
+        Starehe: [
+            "Pangani",
+            "Ziwani/Kariokor",
+            "Landimawe",
+            "Nairobi South",
+            "Hospital",
+        ],
     },
     {
-        Mathare: ['Mabatini',
-            'Huruma',
-            'Ngei',
-            'Mlango Kubwa',
-            'Kiamaiko',
-        ]
+        Mathare: ["Mabatini", "Huruma", "Ngei", "Mlango Kubwa", "Kiamaiko"],
     },
     {
-        Makadara: ['Viwandani',
-            'Harambee',
-            'Makongeni',
-            'Pumwani',
-            'Eastleigh North',
-        ]
+        Makadara: [
+            "Viwandani",
+            "Harambee",
+            "Makongeni",
+            "Pumwani",
+            "Eastleigh North",
+        ],
     },
-
-]
+];
 export const areas = [
-    "Westlands", "Dagoretti South", "Dagoretti North", "Langata", "Kibra", "Roysambu", "Kasarani", "Ruaraka",
-    "Embakasi South", "Embakasi North", "Embakasi Central", "Embakasi East", "Makadara", "Kamukunji", "Starehe", "Mathare",
-
-]
+    "Westlands",
+    "Dagoretti South",
+    "Dagoretti North",
+    "Langata",
+    "Kibra",
+    "Roysambu",
+    "Kasarani",
+    "Ruaraka",
+    "Embakasi South",
+    "Embakasi North",
+    "Embakasi Central",
+    "Embakasi East",
+    "Makadara",
+    "Kamukunji",
+    "Starehe",
+    "Mathare",
+];
+export const url = "http://localhost:3000";

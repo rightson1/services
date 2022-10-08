@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 const Sidebar = ({ worker, user }) => {
     const router = useRouter();
 
+
     const [open, setOpen] = useState(false)
     if (user) {
         if (worker) {

@@ -55,12 +55,12 @@ const Avatar = ({ setUrl, setOpen }) => {
                 <Close className="text-2xl" />
             </div>
             <h1 className="mt-8 font-semibold text-xl text-center">CHOOSE AVATAR</h1>
-            <div className="container grid grid-rows-2 grid-cols-2 mx-auto  gap-8">
+            <div className="container  grid grid-rows-2 grid-cols-2 mx-auto  gap-8">
                 {
                     avatar.map((item, index) => {
                         return <div key={index} onClick={() => setSelectedAvatar(index)} className={!(selectedAvatar === index) ? `w-full h-full flex items-center justify-center` :
                             `w-full h-full flex items-center justify-center border-[3px] rounded-[10px]`}>
-                            <Image src={item} width="150" height="150" alt="" />
+                            <Image src={item} width="100" height="100" alt="" />
                         </div>
                     })
                 }

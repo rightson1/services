@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { data } from "autoprefixer";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
+import { url } from "../../../components/carts";
 
 
 const toastOptions = {
@@ -41,7 +42,7 @@ const Job = ({ data }) => {
         e.preventDefault()
         // const datum = { ...values, worker: user._id, client: data.userId, jobId: data._id, type: 'Job Application' }
         const datum = { ...values, sender: user._id, to: data.userId, jobId: data._id, type: 'Job Application' }
-        axios.patch(`http://localhost:3000/api/order/?userId=${data.userId}`, datum).then(res => {
+        axios.patch(`${url}/api/order/?userId=${data.userId}`, datum).then(res => {
 
             if (res.data) {
                 e.target.reset();
@@ -61,14 +62,14 @@ const Job = ({ data }) => {
         if (!juser) {
             return router.push('/worker/login')
         }
-        axios.get(`http://localhost:3000/api/worker/${juser._id}`).then(res => {
+        axios.get(`${url}/api/worker/${juser._id}`).then(res => {
             setUser(res.data)
             if (!res.data) {
                 router.push('/login')
             }
 
         })
-        axios.get(`http://localhost:3000/api/user/${data.userId}`).then(res => {
+        axios.get(`${url}/api/user/${data.userId}`).then(res => {
             setClient(res.data)
 
 
@@ -78,7 +79,7 @@ const Job = ({ data }) => {
 
 
 
-        axios.put(`http://localhost:3000/api/order/?userId=${data.userId}`).then(res => {
+        axios.put(`${url}/api/order/?userId=${data.userId}`).then(res => {
 
 
             if (res.data) {
@@ -95,7 +96,7 @@ const Job = ({ data }) => {
             return
         }
 
-        axios.get(`http://localhost:3000/api/review/?userId=${user._id}`).then(res => {
+        axios.get(`${url}/api/review/?userId=${user._id}`).then(res => {
 
 
             if (res.data) {
@@ -112,7 +113,7 @@ const Job = ({ data }) => {
         const post = {
             review, userId: user._id, clientId: data.userId, name: user.name, username: user.username
         };
-        axios.post(`http://localhost:3000/api/review`, post).then(res => {
+        axios.post(`${url}/api/review`, post).then(res => {
 
 
             if (res.data) {
@@ -129,7 +130,7 @@ const Job = ({ data }) => {
     }
     const handleLike = () => {
         setLike(!like)
-        axios.patch(`http://localhost:3000/api/user/${data.userId}`, {
+        axios.patch(`${url}/api/user/${data.userId}`, {
             type: 'like',
             id: user._id
         }).then(res => {
@@ -143,7 +144,7 @@ const Job = ({ data }) => {
 
     const handleDislike = () => {
         setDislike(!dislike)
-        axios.patch(`http://localhost:3000/api/user/${data.userId}`, {
+        axios.patch(`${url}/api/user/${data.userId}`, {
             type: 'dislike',
             id: user._id
         }).then(res => {
@@ -319,7 +320,7 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
-    const res = await axios.get(`http://localhost:3000/api/order/${ctx.query.job}`);
+    const res = await axios.get(`${url}/api/order/${ctx.query.job}`);
 
 
     return {

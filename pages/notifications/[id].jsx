@@ -5,6 +5,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react"
 import Image from "next/image";
 import { format } from "timeago.js"
+import { url } from "../../components/carts";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
@@ -100,10 +101,10 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
-    const user = await axios.get(`http://localhost:3000/api/user/${id}`);
+    const user = await axios.get(`${url}/api/user/${id}`);
 
 
-    const datum = await axios.post(`http://localhost:3000/api/notifications`, { id });
+    const datum = await axios.post(`${url}/api/notifications`, { id });
 
 
     return {

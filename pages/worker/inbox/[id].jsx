@@ -9,7 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { format } from "timeago.js"
 import { motion } from "framer-motion";
 import { Router, useRouter } from "next/router";
-
+import { url } from "../../../components/carts";
 const toastOptions = {
     position: "top-right",
     autoClose: 5000,
@@ -35,7 +35,7 @@ const Profile = (
     const handleSubmitApplication = (e) => {
         e.preventDefault()
         const datum = { ...values, to: client._id, sender: worker._id, jobId: order.jobId, type: 'Job Accepted' }
-        axios.patch(`http://localhost:3000/api/order/?userId=${client.userId}`, datum).then(res => {
+        axios.patch(`${url}/api/order/?userId=${client.userId}`, datum).then(res => {
 
             if (res.data) {
                 e.target.reset();
@@ -132,11 +132,11 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
-    let order = await axios.get(`http://localhost:3000/api/notifications/${id}`);
+    let order = await axios.get(`${url}/api/notifications/${id}`);
 
     order = order.data
-    const worker = await axios.get(`http://localhost:3000/api/worker/${order.to}`);
-    const client = await axios.get(`http://localhost:3000/api/user/${order.sender}`);
+    const worker = await axios.get(`${url}/api/worker/${order.to}`);
+    const client = await axios.get(`${url}/api/user/${order.sender}`);
 
     return {
         props: {

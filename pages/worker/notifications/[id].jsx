@@ -8,6 +8,7 @@ import { format } from "timeago.js"
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
+import { url } from "../../../components/carts";
 const toastOptions = {
     position: "top-right",
     autoClose: 5000,
@@ -103,10 +104,10 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
-    const user = await axios.get(`http://localhost:3000/api/worker/${id}`);
+    const user = await axios.get(`${url}/api/worker/${id}`);
 
 
-    const datum = await axios.patch(`http://localhost:3000/api/notifications`, { id });
+    const datum = await axios.patch(`${url}/api/notifications`, { id });
 
 
     return {

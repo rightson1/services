@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react"
 import Image from "next/image";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
+import { url } from "../../components/carts";
 const toastOptions = {
     position: "top-right",
     autoClose: 5000,
@@ -50,7 +51,7 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
-    const user = await axios.get(`http://localhost:3000/api/worker/${id}`);
+    const user = await axios.get(`${url}/api/worker/${id}`);
 
     return {
         props: {

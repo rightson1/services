@@ -16,6 +16,7 @@ import { wards } from "../../components/carts";
 import "react-toastify/dist/ReactToastify.css";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../models/firebase";
+import { url as baseUrl } from "../../components/carts";
 
 
 const toastOptions = {
@@ -75,7 +76,7 @@ const Cart = () => {
 
     useEffect(() => {
         const juser = JSON.parse(localStorage.getItem("user"));
-        axios.get(`http://localhost:3000/api/user/${juser._id}`).then(res => {
+        axios.get(`${baseUrl}/api/user/${juser._id}`).then(res => {
             setUser(res.data)
         })
     }, [])
@@ -120,7 +121,7 @@ const Cart = () => {
             return uploadBytes(fileRef, file).then((res) => {
                 getDownloadURL(res.ref).then((url) => {
                     data.image = url;
-                    axios.post('http://localhost:3000/api/order', data).then((res) => {
+                    axios.post(`${baseUrl}/api/order`, data).then((res) => {
 
                         toast.success('Job and Image Posted, we will notify you if someone applies')
                         e.target.reset();
@@ -133,7 +134,7 @@ const Cart = () => {
 
         }
         else {
-            return axios.post('http://localhost:3000/api/order', data).then((res) => {
+            return axios.post(`${baseUrl}/api/order`, data).then((res) => {
 
                 toast.success('Job Posted successfully, we will notify you if someone applies')
                 e.target.reset();

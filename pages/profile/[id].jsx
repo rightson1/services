@@ -8,6 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { getDownloadURL, ref, uploadBytes, deleteObject } from "firebase/storage";
 import { storage } from "../../models/firebase";
+import { url as baseUrl } from "../../components/carts";
+
+
 const toastOptions = {
     position: "top-right",
     autoClose: 5000,
@@ -25,11 +28,13 @@ const Profile = ({ user }) => {
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
+    console.log(`${baseUrl}/api/user/${user._id}`)
 
     const handleSubmit = async () => {
 
+
         if (!file) {
-            return await axios.put(`http://localhost:3000/api/user/${user._id}`, values).then((res) => {
+            return await axios.put(`${baseUrl}/api/user/${user._id}`, values).then((res) => {
                 if (res.data.username) {
                     toast.success("Updated Succesfull", toastOptions)
 
@@ -57,7 +62,7 @@ const Profile = ({ user }) => {
             getDownloadURL(res.ref).then((url) => {
 
                 const data = { ...values, avatar: url, pic: name }
-                axios.put(`http://localhost:3000/api/user/${user._id}`, data).then((res) => {
+                axios.put(`${baseUrl}/api/user/${user._id}`, data).then((res) => {
                     if (res.data.username) {
                         toast.success("Updated Succesfull", toastOptions)
 
