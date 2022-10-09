@@ -9,7 +9,7 @@ import { url } from "../components/carts";
 import Profile from "../components/Profile";
 import User from "../components/User";
 let rawUrl = ""
-export default function Home() {
+export default function Home({ worker }) {
   const [user, setUser] = useState();
   const router = useRouter();
   const [baseUrl, setBaseUrl] = useState()
@@ -47,7 +47,7 @@ export default function Home() {
         {user && <NavBar user={user} />}
         {user && <Profile user={user} />}
         <User />
-        <Featured />
+        <Featured workers={worker} />
       </div>
     );
 
@@ -63,7 +63,7 @@ export default function Home() {
 
 export const getServerSideProps = async (ctx) => {
   const cookie = ctx.req?.cookies || "";
-
+  const worker = await axios.get(`${url}/api/worker`)
 
   if (cookie.token !== process.env.cookie || !cookie.token || cookie.token == undefined) {
     return {
@@ -76,6 +76,7 @@ export const getServerSideProps = async (ctx) => {
   return {
     props: {
 
+      worker: worker.data
     }
   }
 }

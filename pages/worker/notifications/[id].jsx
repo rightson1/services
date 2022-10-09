@@ -98,7 +98,7 @@ export const getServerSideProps = async (ctx) => {
     if (cookie.token !== process.env.cookie || !cookie.token || cookie.token == undefined) {
         return {
             redirect: {
-                destination: "/login",
+                destination: "/worker/login",
                 permanent: false,
             }
         }

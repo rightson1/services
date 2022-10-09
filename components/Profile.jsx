@@ -15,7 +15,7 @@ const Profile = ({ user }) => {
         <div className="container h-[130px] shadow-md flex flex-col p-2 gap-4" onClick={() => router.push(`/user/${user._id}`)}>
             <div className="flex gap-8">
                 <div className=" w-[50px] h-[50px] rounded-[50%] overflow-hidden">
-                    <Image src="/cleaner.png" alt="" width="100%" objectFit="cover" height="100%" />
+                    <Image src={user.avatar ? user.avatar : "/cleaner.png"} alt="" width="100%" objectFit="cover" height="100%" />
                 </div>
                 <div className="flex flex-col">
                     <h1 className="font-semibold text-xl">{user.username}</h1>

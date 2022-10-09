@@ -79,7 +79,7 @@ const Profile = (
 
                 </div>
                 <div className="flex shadow-md mt-4 flex-col p-4">
-                    <h1 className="text-center font-semibold my-4">About Job Applicant</h1>
+                    <h1 className="text-center font-semibold my-4">About Client</h1>
                     <div><span className="font-semibold">name : </span>@{client.name}</div>
                     <div><span className="font-semibold">Client Area : </span>{client.area}</div>
                     <div><span className="font-semibold">Client Phone Number : </span>{order.phone}</div>
@@ -126,7 +126,7 @@ export const getServerSideProps = async (ctx) => {
     if (cookie.token !== process.env.cookie || !cookie.token || cookie.token == undefined) {
         return {
             redirect: {
-                destination: "/login",
+                destination: "/worker/login",
                 permanent: false,
             }
         }

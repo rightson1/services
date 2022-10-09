@@ -34,6 +34,14 @@ const hundler = async function(req, res) {
             res.status(500).json(e);
         }
     }
+    if (method === "DELETE") {
+        try {
+            const data = await Order.find({ userId: query.id });
+            res.status(201).json(data);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
 };
 
 export default hundler;

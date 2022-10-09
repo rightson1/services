@@ -4,7 +4,7 @@ import Single from "./Single";
 import { motion } from "framer-motion"
 
 
-const Featured = () => {
+const Featured = ({ workers }) => {
     const [index, setIndex] = useState(0);
     const handleClick = (direction) => {
         if (direction === "left") {
@@ -33,12 +33,10 @@ const Featured = () => {
         }}
 
             className="gap-4 h-[80px] flex " >
-            <Single />
-            <Single />
-            <Single />
-            <Single />
-            <Single />
-            <Single />
+            {workers.map((user, index) => {
+                return <Single key={index} user={user} />
+
+            })}
         </motion.div>
 
     </div>;
