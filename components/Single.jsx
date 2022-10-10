@@ -4,8 +4,8 @@ import { AiFillStar } from "react-icons/ai"
 const Single = ({ user }) => {
     return <div className="min-w-[250px] w-[250px]  
     h-full  shadow-lg flex justify-between items-center gap-4 px-2 border-[1px] border-black rounded-md">
-        <div className="img flex-1 ">
-            <Image src={user.avatar ? user.avatar : "https://avatars.dicebear.com/api/adventurer/1234.svg"} alt="img"
+        <div className="img flex-1  rounded-full overflow-hidden w-[100px] h-full">
+            <Image objectFit="cover" src={user.avatar ? user.avatar : "https://avatars.dicebear.com/api/adventurer/1234.svg"} alt="img"
                 width="70%" height="100%" />
         </div>
         <div className="flex flex-col flex-2">

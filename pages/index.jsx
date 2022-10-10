@@ -54,9 +54,17 @@ export default function Home({ worker }) {
   }
 
   else {
-    return <div className="flex items-center justify-center h-screen">
-      <div className="text-red-900">Loading...</div>
-      <button onClick={() => router.push('/login')} className="border-2 m-4 p-2  xm:cursor-pointer">Navigate To Login</button>
+    return <div className="flex h-screen flex-col  gap-4 w-screen py-4 px-8">
+      <div role="status" className=" animate-pulse flex flex-col gap-8">
+
+        <div className="h-12 bg-gray-200 rounded-sm dark:bg-gray-700 mb-4 w-full"></div>
+        <div className="flex gap-8">
+          <div className="h-[200px] md:h-[300px] bg-gray-200  dark:bg-gray-700 mb-4 w-full"></div>
+
+        </div>
+        <div className="h-12 bg-gray-200 rounded-sm dark:bg-gray-700 mb-4 w-full"></div>
+      </div>
+      <div className="flex items-center flex-col"><span className="text-[10px] text-red-200">If it takes too long</span>  <button onClick={() => router.push('/login')} className="border-2  p-2  xm:cursor-pointer">Navigate To Login</button></div>
     </div>
   }
 }

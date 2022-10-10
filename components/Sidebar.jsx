@@ -50,12 +50,15 @@ const Sidebar = ({ worker, user }) => {
 
                     className={"flex flex-col gap-4  pl-4 "}>
 
-                    <Link href={`/worker/profile/${user._id}`} >
-                        <h1 className="xm:cursor-pointer">View Account Details</h1></Link>
-                    <Link href={`/worker/edit/${user._id}`} ><h1 className="xm:cursor-pointer" >Edit Profile</h1></Link>
-                    <Link href={`/worker/login`} ><h1 className="xm:cursor-pointer" >Logout</h1></Link>
 
-                    <h1 className="xm:cursor-pointer">Delete Account</h1>
+                    <motion.div className="py-2 px-4" whileHover={{ background: 'black', color: 'white', }} whileTap={{ background: 'red', color: 'white' }} onClick={() => router.push(`/worker/profile/${user._id}`)}  >
+                        <h1 className="xm:cursor-pointer">View Account Details</h1></motion.div>
+                    <motion.div className="py-2 px-4" whileHover={{ background: 'black', color: 'white', }} whileTap={{ background: 'red', color: 'white' }} onClick={() => router.push(`/worker/edit/${user._id}`)}><h1 className="xm:cursor-pointer" >Edit Profile</h1></motion.div>
+                    <motion.div className="py-2 px-4" whileHover={{ background: 'black', color: 'white', }} whileTap={{ background: 'red', color: 'white' }} onClick={() => router.push(`/worker/login`)} ><h1 className="xm:cursor-pointer" >Logout</h1></motion.div>
+
+                    <motion.div className="py-2 px-4" whileHover={{ background: 'black', color: 'white', }} whileTap={{ background: 'red', color: 'white' }}>
+                        <h1 className="xm:cursor-pointer">Delete Account</h1>
+                    </motion.div>
                 </motion.div>
                 <Link href="/worker">
                     <div className="w-full xm:cursor-pointer -mt-3 shadow-md py-2 px-2 text-light bg-red-50 text-xl text-center">
@@ -122,14 +125,16 @@ const Sidebar = ({ worker, user }) => {
 
                     }}
 
-                    className={"flex flex-col gap-4  pl-4  "}>
+                    className={"flex flex-col gap-2  pl-4  "}>
 
-                    <Link href={`/user/${user._id}`} >
-                        <h1 className="xm:cursor-pointer">View Account Details</h1></Link>
-                    <Link href={`/profile/${user._id}`} ><h1 className="xm:cursor-pointer" >Edit Profile</h1></Link>
-                    <Link href={`/login`} ><h1 className="xm:cursor-pointer" >Logout</h1></Link>
+                    <motion.div className="py-2 px-4" whileHover={{ background: 'black', color: 'white', }} whileTap={{ background: 'red', color: 'white' }} onClick={() => router.push(`/user/${user._id}`)}  >
+                        <h1 className="xm:cursor-pointer">View Account Details</h1></motion.div>
+                    <motion.div className="py-2 px-4" whileHover={{ background: 'black', color: 'white', }} whileTap={{ background: 'red', color: 'white' }} onClick={() => router.push(`/profile/${user._id}`)}><h1 className="xm:cursor-pointer" >Edit Profile</h1></motion.div>
+                    <motion.div className="py-2 px-4" whileHover={{ background: 'black', color: 'white', }} whileTap={{ background: 'red', color: 'white' }} onClick={() => router.push(`login`)} ><h1 className="xm:cursor-pointer" >Logout</h1></motion.div>
 
-                    <h1 className="xm:cursor-pointer">Delete Account</h1>
+                    <motion.div className="py-2 px-4" whileHover={{ background: 'black', color: 'white', }} whileTap={{ background: 'red', color: 'white' }}>
+                        <h1 className="xm:cursor-pointer">Delete Account</h1>
+                    </motion.div>
                 </motion.div>
                 <Link href="/">
                     <div className="w-full xm:cursor-pointer -mt-3 shadow-md py-2 px-2 text-light bg-red-50 text-xl text-center">
