@@ -11,17 +11,19 @@ import { toast, ToastContainer } from "react-toastify";
 import Router, { useRouter } from "next/router";
 import { deleteObject, getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../../models/firebase";
-
+import { createUser } from "../../../redux/user";
+import { useDispatch } from "react-redux";
 const Profile = ({ user }) => {
     const [values, setValues] = useState()
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
 
     }
-
+    const dispatch = useDispatch()
     const toastOptions = {
         position: "top-right",
         autoClose: 5000,
@@ -41,9 +43,7 @@ const Profile = ({ user }) => {
                 setLoading(false)
                 if (res.data.username) {
                     toast.success("Updated Succesfull", toastOptions)
-                    // setTimeout(() => {
-                    //     router.push(`/worker/profile/${user._id}`)
-                    // }, 2000)
+                    dispatch(createUser(res.data))
 
                 } else {
 
@@ -74,6 +74,7 @@ const Profile = ({ user }) => {
                 axios.put(`${baseUrl}/api/worker/${user._id}`, data).then((res) => {
                     setLoading(false)
                     if (res.data.username) {
+                        dispatch(createUser(res.data))
                         toast.success("Updated Succesfull", toastOptions)
                         setTimeout(() => {
                             router.push(`/worker/profile/${user._id}`)

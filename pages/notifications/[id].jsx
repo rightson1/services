@@ -21,7 +21,7 @@ const toastOptions = {
     pauseOnHover: false,
 };
 const Profile = ({ user, datum }) => {
-    console.log(user, datum)
+
     const { data, users } = datum
     const [notification, setNotification] = useState([]);
 

@@ -5,6 +5,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { url } from "../../components/carts";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../../redux/user";
 const toastOptions = {
     position: "top-right",
     autoClose: 5000,
@@ -22,7 +24,8 @@ const Login = () => {
 
     });
     const [loading, setLoading] = useState(false);
-
+    const currentUser = useSelector(state => state.user.user);
+    const dispatch = useDispatch()
     const router = useRouter();
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
@@ -35,6 +38,7 @@ const Login = () => {
             if (res.data.username) {
                 router.push("/worker")
                 localStorage.setItem('user', JSON.stringify(res.data))
+                dispatch(createUser(res.data))
             } else {
 
 

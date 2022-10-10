@@ -11,7 +11,8 @@ import { data } from "autoprefixer";
 import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import { url } from "../../../components/carts";
-
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../../../redux/user";
 
 const toastOptions = {
     position: "top-right",
@@ -35,6 +36,8 @@ const Job = ({ data }) => {
     const [dislike, setDislike] = useState(false);
     const [client, setClient] = useState();
     const [values, setValues] = useState();
+    const currentUser = useSelector(state => state.user.user);
+    const dispatch = useDispatch()
 
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
@@ -64,15 +67,12 @@ const Job = ({ data }) => {
         if (!juser) {
             return router.push('/worker/login')
         }
-        axios.get(`${url}/api/worker/${juser._id}`).then(res => {
-            setUser(res.data)
-            if (!res.data) {
-                router.push('/login')
-            }
-
-        })
+        if (currentUser) {
+            return setUser(currentUser)
+        }
         axios.get(`${url}/api/user/${data.userId}`).then(res => {
             setClient(res.data)
+            dispatch(createUser(res.data))
 
 
         })

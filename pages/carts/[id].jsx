@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../../models/firebase";
 import { url as baseUrl } from "../../components/carts";
+import { useDispatch, useSelector } from "react-redux";
 
 
 const toastOptions = {
@@ -46,6 +47,9 @@ const Cart = () => {
     const [place, setPlace] = useState([]);
     const [file, setFile] = useState(null)
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const currentUser = useSelector(state => state.user);
+
 
 
     const [values, setValues] = useState({
@@ -55,7 +59,6 @@ const Cart = () => {
     })
 
     useEffect(() => {
-
 
         const data = wards.find((ward) => Object.keys(ward)[0] === area)
 
@@ -73,13 +76,20 @@ const Cart = () => {
         }
     }, [place])
 
-    console.log(ward)
-
     useEffect(() => {
         const juser = JSON.parse(localStorage.getItem("user"));
-        axios.get(`${baseUrl}/api/user/${juser._id}`).then(res => {
-            setUser(res.data)
-        })
+
+        if (currentUser.user) {
+
+            return setUser(currentUser.user)
+        } else {
+            axios.get(`${url}/api/user/${juser._id}`).then(res => {
+                setUser(res.data)
+                dispatch(createUser(res.data))
+
+            })
+        }
+
     }, [])
     useEffect(() => {
         let time = []

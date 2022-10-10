@@ -4,7 +4,9 @@ import Sidebar from "../../components/Sidebar"
 import { FcSearch } from "react-icons/fc"
 import axios from "axios";
 import { useRouter } from "next/router";
-import { url } from "../../components/carts"
+import { url } from "../../components/carts";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser } from "../../redux/user";
 
 const Index = ({ data }) => {
 
@@ -13,6 +15,8 @@ const Index = ({ data }) => {
     const router = useRouter();
     const [jobs, setJobs] = useState([]);
     const [area, setArea] = useState([]);
+    const currentUser = useSelector(state => state.user.user);
+    const dispatch = useDispatch()
 
 
     useEffect(() => {
@@ -20,11 +24,13 @@ const Index = ({ data }) => {
         if (!juser) {
             return router.push('/worker/login')
         }
-        axios.get(`${url}/api/worker/${juser._id}`).then(res => {
-            setUser(res.data)
-            if (!res.data) {
-                router.push('/login')
-            }
+        if (currentUser) {
+            return setUser(currentUser)
+        }
+        axios.get(`${url}/api/user/${data.userId}`).then(res => {
+            setClient(res.data)
+            dispatch(createUser(res.data))
+
 
         })
     }, [])

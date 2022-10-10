@@ -3,8 +3,10 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { createUser } from "../redux/user";
 import { url } from "../components/carts";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 const toastOptions = {
     position: "top-right",
     autoClose: 5000,
@@ -16,6 +18,7 @@ const toastOptions = {
     pauseOnHover: true,
 };
 const Login = () => {
+    const dispatch = useDispatch();
     const [values, setValues] = useState({
         username: null,
         password: null,
@@ -32,6 +35,7 @@ const Login = () => {
         setLoading(true)
         axios.patch(`${url}/api/user`, values).then((res) => {
             setLoading(false)
+            dispatch(createUser(res.data))
             if (res.data.username) {
                 router.push("/")
                 localStorage.setItem('user', JSON.stringify(res.data))

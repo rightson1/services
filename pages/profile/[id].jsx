@@ -9,7 +9,9 @@ import { toast, ToastContainer } from "react-toastify";
 import { getDownloadURL, ref, uploadBytes, deleteObject } from "firebase/storage";
 import { storage } from "../../models/firebase";
 import { url as baseUrl } from "../../components/carts";
+import { useDispatch, useSelector } from "react-redux";
 
+import user, { createUser } from "../../redux/user"
 
 const toastOptions = {
     position: "top-right",
@@ -21,15 +23,25 @@ const toastOptions = {
     progress: undefined,
     pauseOnHover: false,
 };
-const Profile = ({ user }) => {
+const Profile = ({ data }) => {
+
     const [values, setValues] = useState()
+    const [user, setUser] = useState(data)
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const currentUser = useSelector(state => state.user.user)
+    useState(() => {
+        if (!currentUser) return
+        if (!user) {
 
+            setUser(currentUser)
+        }
+    }, [])
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
-    console.log(`${baseUrl}/api/user/${user._id}`)
+
 
     const handleSubmit = async () => {
         setLoading(true)
@@ -40,6 +52,7 @@ const Profile = ({ user }) => {
                 setLoading(false)
                 if (res.data.username) {
                     toast.success("Updated Succesfull", toastOptions)
+                    dispatch(createUser(res.data))
 
                 } else {
 
@@ -69,6 +82,7 @@ const Profile = ({ user }) => {
                 axios.put(`${baseUrl}/api/user/${user._id}`, data).then((res) => {
                     if (res.data.username) {
                         toast.success("Updated Succesfull", toastOptions)
+                        dispatch(createUser(res.data))
 
                     } else {
 
@@ -172,10 +186,10 @@ export const getServerSideProps = async (ctx) => {
     }
 
     const user = await axios.get(`http://localhost:3000/api/user/${id}`);
-
+    console.log(user)
     return {
         props: {
-            user: user.data
+            data: user.data
         }
     }
 }
