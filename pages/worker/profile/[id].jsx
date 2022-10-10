@@ -9,7 +9,7 @@ import { AiOutlineMail, AiTwotoneCalendar } from "react-icons/ai";
 import { MdLocationOn } from "react-icons/md";
 import { format } from "timeago.js";
 const User = ({ user }) => {
-    console.log(user)
+
     if (user) {
         return <div className="flex">
             <div className="hidden md:flex flex-1">

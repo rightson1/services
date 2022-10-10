@@ -185,8 +185,8 @@ export const getServerSideProps = async (ctx) => {
         }
     }
 
-    const user = await axios.get(`http://localhost:3000/api/user/${id}`);
-    console.log(user)
+    const user = await axios.get(`http://${baseUrl}/api/user/${id}`);
+
     return {
         props: {
             data: user.data
