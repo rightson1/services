@@ -18,17 +18,19 @@ const Index = ({ data }) => {
     const currentUser = useSelector(state => state.user.user);
     const dispatch = useDispatch()
 
-
+    console.log(currentUser)
     useEffect(() => {
         const juser = JSON.parse(localStorage.getItem("user"));
         if (!juser) {
             return router.push('/worker/login')
         }
-        if (currentUser) {
+
+        if (currentUser !== null) {
             return setUser(currentUser)
         }
-        axios.get(`${url}/api/user/${data.userId}`).then(res => {
-            setClient(res.data)
+
+        axios.get(`${url}/api/worker/${juser._id}`).then(res => {
+            setUser(res.data)
             dispatch(createUser(res.data))
 
 
@@ -49,6 +51,7 @@ const Index = ({ data }) => {
         })
 
     }
+
 
     useEffect(() => {
         if (!user) {

@@ -81,7 +81,7 @@ const Cart = () => {
 
         if (currentUser.user) {
 
-            return setUser(currentUser.user)
+            setUser(currentUser.user)
         } else {
             axios.get(`${url}/api/user/${juser._id}`).then(res => {
                 setUser(res.data)
