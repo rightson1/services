@@ -18,33 +18,22 @@ export default function Home({ worker }) {
   const currentUser = useSelector(state => state.user);
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   const juser = JSON.parse(localStorage.getItem("user"));
-  //   if (juser) return router.push('/login')
-  //   if (currentUser.user) {
-
-  //     setUser(currentUser.user)
-  //   } else {
-  //     axios.get(`${url}/api/user/${juser._id}`).then(res => {
-  //       setUser(res.data)
-  //       dispatch(createUser(res.data))
-
-  //     })
-  //   }
-
-  // }, [])
-
   useEffect(() => {
     const juser = JSON.parse(localStorage.getItem("user"));
+    if (currentUser.user) {
 
-    axios.get(`${url}/api/user/${juser._id}`).then(res => {
-      setUser(res.data)
-      dispatch(createUser(res.data))
+      setUser(currentUser.user)
+    } else {
+      axios.get(`${url}/api/user/${juser._id}`).then(res => {
+        setUser(res.data)
+        dispatch(createUser(res.data))
 
-    })
-
+      })
+    }
 
   }, [])
+
+
   useEffect(() => {
     setBaseUrl(window.location.href)
 
