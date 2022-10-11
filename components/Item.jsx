@@ -16,8 +16,8 @@ const Item = ({ item, index }) => {
                 delay: index / 3,
             }
         }}
-        className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] cursor-pointer border-2xl shadow-lg  flex items-center justify-center flex-col"
-
+        className="w-[150px] h-[150px] md:w-[200px] md:h-[200px] cursor-pointer border-2xl shadow-lg  flex items-center justify-center bg-[rgba(0,0,0,.8)] z-[4] flex-col"
+        onClick={() => router.push('/login')}
     >
         <div className="flex-2 h-full w-full  flex  overflow-hidden justify-center">
 

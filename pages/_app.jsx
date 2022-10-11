@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import Head from "next/head";
 import store from "../redux/store";
 import { Provider } from "react-redux"
+import "react-toastify/dist/ReactToastify.css";
 function MyApp({ Component, pageProps }) {
   return (
     <>

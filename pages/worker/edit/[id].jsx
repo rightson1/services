@@ -186,7 +186,7 @@ export const getServerSideProps = async (ctx) => {
             }
         }
     }
-    console.log(id)
+
     const user = await axios.get(`${baseUrl}/api/worker/${id}`);
 
     return {

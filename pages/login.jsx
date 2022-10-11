@@ -37,7 +37,7 @@ const Login = () => {
             setLoading(false)
             dispatch(createUser(res.data))
             if (res.data.username) {
-                router.push("/")
+                router.push("/home")
                 localStorage.setItem('user', JSON.stringify(res.data))
             } else {
 

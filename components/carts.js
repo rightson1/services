@@ -7,7 +7,16 @@ export const carts = [
     { img: "/carpenter.png", title: "Carpenter" },
     { img: "/more.png", title: "more" },
 ];
-
+export const toastOptions = {
+    position: "bottom-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+    pauseOnHover: true,
+};
 export const wards = [{
         Westlands: ["Kitisuru", "Parklands", "Karura", "Mountain view", "kangemi"],
     },
@@ -154,5 +163,5 @@ export const areas = [
     "Starehe",
     "Mathare",
 ];
-// export const url = "http://localhost:3000";
-export const url = "https://services-peach-sigma.vercel.app";
+export const url = "http://localhost:3000";
+// export const url = "https://services-peach-sigma.vercel.app";

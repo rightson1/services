@@ -139,7 +139,7 @@ const Sidebar = ({ worker, user }) => {
                             <h1 className="xm:cursor-pointer">Delete Account</h1>
                         </motion.div>
                     </motion.div>
-                    <Link href="/" >
+                    <Link href="/home" >
                         <motion.div whileHover={{ background: 'black', color: 'white', }} whileTap={{ background: 'red', color: 'white' }} className="w-full  xm:cursor-pointer -mt-3 shadow-md py-2 px-2 text-light bg-red-50 text-xl text-center">
                             <h1>Home</h1>
                         </motion.div>
@@ -151,7 +151,7 @@ const Sidebar = ({ worker, user }) => {
                         </motion.div>
                     </Link>
 
-                    <Link href="/">
+                    <Link href="/home">
                         <motion.div whileHover={{ background: 'black', color: 'white', }} whileTap={{ background: 'red', color: 'white' }} className="w-full  xm:cursor-pointer -mt-3 shadow-md py-2 px-2 text-light bg-red-50 text-xl text-center">
                             <h1>Disputes</h1>
                         </motion.div>

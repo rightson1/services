@@ -122,8 +122,7 @@ const Profile = ({ data }) => {
 
                     </div>    <input type="file" id="file" className="hidden" onChange={(e) => setFile(e.target.files[0])} />
                     <div className="flex flex-col">
-                        <h1 className="font-semibold text-xl">Rightson Kirigha</h1>
-                        <h1 className="font-light">Nairobi,Starehe</h1>
+                        <h1 className="font-semibold text-xl">{data.area}</h1>
                     </div>
 
 

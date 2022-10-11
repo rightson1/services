@@ -45,7 +45,7 @@ const WorkerNav = ({ profile, jobs, search, user, non, notification, inbox }) =>
     if (profile) {
         return (
             <div className="h-[70px] w-screen md:w-full flex justify-between mx-2 items-center mb-8 shadow-lg px-5">
-                <div className=" sm:cursor-pointer w-[40px] h-[40px]  flex items-center justify-center rounded-full text-xl border-black" onClick={() => { non ? router.push('/') : Router.back() }}>
+                <div className=" sm:cursor-pointer w-[40px] h-[40px]  flex items-center justify-center rounded-full text-xl border-black" onClick={() => { non ? router.push('/home') : Router.back() }}>
                     <AiOutlineArrowLeft />
 
                 </div>
