@@ -8,7 +8,7 @@ const HomeNav = () => {
     const [open, setOpen] = useState(false)
     return <>
         <div className="flex justify-between px-0 md:px-4 items-center text-white opacity-90 h-[80px]">
-            <h1 className="text-2xl font-bold cursor-pointer" onClick={() => router.push('/')}>Home.</h1>
+            <h1 className="text-2xl font-bold xm:cursor-pointer" onClick={() => router.push('/')}>Home.</h1>
             <div className="hidden md:flex gap-4 text-[16px] opacity-75 flex-row-reverse ">
                 <motion.div whileTap={{ background: 'black', color: 'white' }} className="cursor-pointer px-3 py-2 hover:border-b-[2px]" onClick={() => router.push('/about')}>About Dev.</motion.div>
                 <motion.div whileTap={{ background: 'black', color: 'white' }} className="cursor-pointer px-3 py-2 hover:border-b-[2px]" onClick={() => router.push('/services')}>Services</motion.div>
