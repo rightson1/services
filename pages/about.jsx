@@ -39,7 +39,7 @@ const About = () => {
                         <button className="p-4 shadow-lg bg-white" onClick={() => router.push("/worker/register")}>Register As Worker</button>
                     </div>
                 </div>
-                <div className="flex mt-10  -ml-4 flex-1 w-full h-full max-w-[400px] max-h-[400px] bg-[rgba(0,0,0,.6)] md:-ml-8 flex-col justify-center min-h-[250px]  gap-4 text-white  z-[3] ">
+                <div className="flex mt-10  -ml-2 flex-1 w-full h-full max-w-[400px] max-h-[400px] bg-[rgba(0,0,0,.6)] md:-ml-8 flex-col justify-center min-h-[250px]  gap-4 text-white  z-[3] ">
                     <h1 className="font-semibold text-2xl xm:text-3xl text-white ">About Developer</h1>
                     <p className="text-[12px] fomt-thin opacity-60">Developed By Rightson Kirigha a 2nd year Riara university Student who is passionate about developing new ideas</p>
                 </div>
